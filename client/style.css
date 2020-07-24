@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  display: grid;
+  grid-template-rows:  50px 1fr;
+  width: 100vw;
+  height: 100vh;
+}
+
+main, header {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  justify-content: center;
+  background-color: white;
+  text-align: center;
+}
+
+.main-section, article, aside {
+  border-style: solid;
+  border-width: thick;
+}
+
+article {
+  height: calc(100vh-50px);
+  overflow: scroll;
+}
+
+input[type="radio"] {
+  display:block;
+  margin-top: 50px;
+}
+
+footer {
+  position: absolute;
+  bottom: 50px;
+}
