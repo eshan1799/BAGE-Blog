@@ -67,3 +67,19 @@ footer {
   border-style: solid;
   border-width: thick;
 }
+.post-made {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  margin-left: 15%;
+  margin-right: 15%;
+  border-style: solid;
+  border-width: thick;
+  background-color: grey;
+}
+.post-made p {
+  color: blue;
+}
+.post-made h4 {
+  color: brown;
+}
