@@ -51,7 +51,7 @@ app.get('/blogs/search', (req, res) => {
     : res.send(JSON.stringify(`"${searchTerm}" did not return any results!`));
 });
 
-app.listen(process.env.port || 3000, () => console.log(`Express now departing!`));
+app.listen(process.env.PORT || 3000, () => console.log(`Express now departing!`));
 
 const blogSearch = (searchTerm) => {
   return blogs.blogs.filter(
