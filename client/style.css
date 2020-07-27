@@ -71,18 +71,13 @@ footer {
 .post-made {
   display: flex;
   flex-direction: column;
-  margin-top: 5%;
-  margin-left: 15%;
-  margin-right: 15%;
-  border-style: solid;
-  border-width: thick;
   background-color: #ffdee3;
 }
 .post-made * {
-  margin: 2%;
+  margin-top: 2%;
 }
 .post-made p {
-  color: blue;
+  color: red;
 
   text-align: left;
   margin-left: 5%;

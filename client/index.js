@@ -10,6 +10,8 @@ let formElement = []
 let newData = []
 let blogSection = document.querySelector('.blog-section')
 let newP = []
+let emojiCheck;
+emojiCheck = document.querySelector("#emojiSelect")
 const newPost = document.querySelector("#make-post");
 newPostSection = document.querySelector('.new-post')
 commentSection = document.querySelector('.comment-section')
@@ -33,25 +35,39 @@ function deleteBlogs() {
 
 function drawBlogs(array) {
     newData = array.blogs
-    console.log(newData.length)
   for (i = 0; i < array.blogs.length; i++){
     newPost.insertAdjacentHTML("afterend", `<section class="post-made">
                                           <h1>${newData[i].title}</h1>
-                                          <h4>${newData[i].text}<h4>
+                                          <h4 id="h4Item">${newData[i].text}<h4>
                                           <p>${newData[i].tags}</p>
                                           <button type="button" id="button">View Comments</button>
+                                          <select id="emojiSelect" name="emoji">
+                                          <option value="0"></option>
+                                          <option value="1">&#128515;</option>
+                                          <option value="2">&#128525;</option>
+                                          <option value="3">&#128531;</option>
                                           </section>`)
   }
+  ifCheck()
+}
+function ifCheck() {
+let h4Item = document.getElementById('h4Item')
+console.log(h4Item)
+  // if ( == "2") {
+  //   console.log('hello')
+  // }
 }
 
 function hideNewPost() {
   newPostSection.setAttribute('style', 'visibility: hidden;')
+
 }
 
 function hideCommentSection() {
   commentSection.setAttribute('style', 'visibility: hidden;')
 }
 function showNewPost() {
+
   newPostSection.setAttribute('style', 'visibility: visible;')
 }
 
@@ -74,5 +90,4 @@ function savePost(e){
     .then(console.log(title))
     .catch(console.warn)
     deleteBlogs()
-    loadBlogs()
-}
+  }
