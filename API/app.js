@@ -7,12 +7,6 @@ const bodyParser = require('body-parser');
 app.use(cors());
 app.use(bodyParser.text());
 
-const blogs = [
-  {title: "Number 1", text:"djlas", tags:["technology", "art"], comments: [1, 2, 3], key: 0 },
-  {title: "Number 2", text:"hello", tags:["technology", "art"], comments: [1, 2, 3], key: 1 },
-  {title: "Number 3", text:"djlas", tags:["technology", "art"], comments: [1, 2, 3], key: 2 }
-]
-
 let blogID;
 
 app.get('/', (req, res) => res.send('Hello world!'))
