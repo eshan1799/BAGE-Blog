@@ -11,12 +11,13 @@ let newData = []
 let blogSection = document.querySelector('.blog-section')
 let blogCreateSection = document.querySelector('.post-made')
 let newP = []
+const newPost = document.querySelector("#post-made");
 newPostSection = document.querySelector('.new-post')
 commentSection = document.querySelector('.comment-section')
 addNew = document.querySelector('#addNew')
 addNew.addEventListener('click', showNewPost)
 hideNewPost()
-// hideCommentSection()
+hideCommentSection()
 loadBlogs()
 
 function loadBlogs() {
@@ -24,11 +25,11 @@ function loadBlogs() {
     .then(r => r.json())
     .then(drawBlogs)
     .catch(console.error())
-}
+  }
 
 function drawBlogs(array) {
     newData = array.blogs
-    const newPost = document.querySelector("#post-made");
+
 
   for (i = 0; i < array.blogs.length; i++){
     newPost.insertAdjacentHTML("afterend", `<section class="post-made">
@@ -38,8 +39,6 @@ function drawBlogs(array) {
                                           <button type="button" id="button">View Comments</button>
                                           </section>`)
   }
-  newP[0].textContent = newData[0].title
-  console.log(newP[0].textContent)
 }
 
 function hideNewPost() {
@@ -71,4 +70,6 @@ function savePost(e){
     .then(r => r.json())
     .then(console.log(title))
     .catch(console.warn)
+
+    loadBlogs()
 }

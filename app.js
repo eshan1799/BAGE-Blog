@@ -3,44 +3,49 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const fs = require('fs-extra');
+const { json } = require('body-parser');
 
 app.use(cors());
 app.use(bodyParser.text());
 
+// Access external data storage
 let rawData = fs.readFileSync('blogs.json');
 let blogs = JSON.parse(rawData);
 let blogID;
 
+// Access client side files
+app.use(express.static('client'));
+
+//Home route
 app.get('/', (req, res) => res.send('Hello world!'))
 
+//All blogs route
 app.get('/blogs', (req, res) => res.send(JSON.stringify(blogs)));
 
+// New blog post route
 app.post('/blogs/new', (req, res) => {
   const newPost = req.body;
-  blogs.push(newPost);
+  blogs.blogs.push(newPost);
+  writeBlog();
   res.send(JSON.stringify(newPost));
 });
 
-app.get('/blog/:id/comments', (req, res) => {
-  blogID = req.params.id;
-  for (blog in blogs) {
-    if (blogs.blogs.key === blogID) {
-      res.send(JSON.stringify(blog.comments));
-    }
-  }
+// Access comments
+app.get('/blogs/:id/comments', (req, res) => {
+  blogID = Number(req.params.id);
+  res.send(JSON.stringify(blogs.blogs[blogID].comments))
 });
 
+// Post new comment
 app.post('/blogs/:id/comments', (req, res) => {
   const newComment = req.body;
   blogID = req.params.id;
-  for (blog in blogs) {
-    if (blogs.blogs.key === blogID) {
-      blogs.comments.push(newComment);
-    }
-  }
-  res.send(JSON.stringify(newComment))
+  blogs.blogs[blogID].comments.push(newComment);
+  writeBlog();
+  res.send(JSON.stringify(newComment));
 });
 
+// Search through blog posts
 app.get('/blogs/search', (req, res) => {
   let searchTerm = req.query.q;
   let results = blogSearch(searchTerm);
@@ -49,8 +54,19 @@ app.get('/blogs/search', (req, res) => {
     : res.send(JSON.stringify(`"${searchTerm}" did not return any results!`));
 });
 
-app.listen(process.env.port || 3000, () => console.log(`Express now departing!`));
+// Emoji counter
+app.patch('/blogs/:id/emojis', (req, res) => {
+  let emoji = req.body;
+  blogID = req.params.id;
+  let counter = blogs.blogs[blogID].emojis.emoji;
+  counter ++;
+  writeBlog();
+  res.send(json.stringify(counter))
+});
 
+app.listen(process.env.PORT || 3000, () => console.log(`Express now departing!`));
+
+// Blog search function
 const blogSearch = (searchTerm) => {
   return blogs.blogs.filter(
     (blog) =>
@@ -59,3 +75,11 @@ const blogSearch = (searchTerm) => {
       blog.tags.includes(searchTerm)
   );
 };
+
+// Rewrites the external blog json file
+function writeBlog() {
+  fs.writeFile('blogs.json', JSON.stringify(blogs, null, 2), (err) => {
+    if (err) throw err;
+    console.log('The "data to append" was appended to file!');
+  });
+}
