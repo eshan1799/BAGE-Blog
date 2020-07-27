@@ -1,24 +1,52 @@
 {
-  "blogs":[
-  {
-    "title": "Number 1",
-    "text":"djlas",
-    "tags":["technology", "art"],
-    "comments": ["comment 1", "comment 2", "comment 3"],
-    "key": 0
-  },
-  {
-    "title": "Number 2",
-    "text":"djlas",
-    "tags":["technology", "art"],
-    "comments": ["comment 1", "comment 2", "comment 3"],
-    "key": 1
-  },
-  {
-    "title": "Number 3",
-    "text":"djlas",
-    "tags":["technology", "art"],
-    "comments": ["comment 1", "comment 2", "comment 3"],
-    "key": 2
-  }]
+  "blogs": [
+    {
+      "title": "Number 1",
+      "text": "djlas",
+      "tags": [
+        "technology",
+        "art"
+      ],
+      "comments": [
+        "comment 1",
+        "comment 2",
+        "comment 3"
+      ],
+      "emojis":
+        {
+        "emoji 1": 0,
+        "emoji 2": 0,
+        "emoji 3": 0
+        },
+      "key": 0
+    },
+    {
+      "title": "Number 2",
+      "text": "djlas",
+      "tags": [
+        "technology",
+        "art"
+      ],
+      "comments": [
+        "comment 1",
+        "comment 2",
+        "comment 3"
+      ],
+      "key": 1
+    },
+    {
+      "title": "Number 3",
+      "text": "djlas",
+      "tags": [
+        "technology",
+        "art"
+      ],
+      "comments": [
+        "comment 1",
+        "comment 2",
+        "comment 3"
+      ],
+      "key": 2
+    }
+  ]
 }
