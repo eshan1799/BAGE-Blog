@@ -3,12 +3,12 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const fs = require('fs-extra');
+const { json } = require('body-parser');
 
 app.use(cors());
 app.use(bodyParser.text());
 
 // Access external data storage
-
 let rawData = fs.readFileSync('blogs.json');
 let blogs = JSON.parse(rawData);
 let blogID;
@@ -26,6 +26,7 @@ app.get('/blogs', (req, res) => res.send(JSON.stringify(blogs)));
 app.post('/blogs/new', (req, res) => {
   const newPost = req.body;
   blogs.blogs.push(newPost);
+  writeBlog();
   res.send(JSON.stringify(newPost));
 });
 
@@ -40,6 +41,7 @@ app.post('/blogs/:id/comments', (req, res) => {
   const newComment = req.body;
   blogID = req.params.id;
   blogs.blogs[blogID].comments.push(newComment);
+  writeBlog();
   res.send(JSON.stringify(newComment));
 });
 
@@ -50,6 +52,16 @@ app.get('/blogs/search', (req, res) => {
   results.length > 0
     ? res.send(JSON.stringify(results))
     : res.send(JSON.stringify(`"${searchTerm}" did not return any results!`));
+});
+
+// Emoji counter
+app.patch('/blogs/:id/emojis', (req, res) => {
+  let emoji = req.body;
+  blogID = req.params.id;
+  let counter = blogs.blogs[blogID].emojis.emoji;
+  counter ++;
+  writeBlog();
+  res.send(json.stringify(counter))
 });
 
 app.listen(process.env.PORT || 3000, () => console.log(`Express now departing!`));
@@ -63,3 +75,11 @@ const blogSearch = (searchTerm) => {
       blog.tags.includes(searchTerm)
   );
 };
+
+// Rewrites the external blog json file
+function writeBlog() {
+  fs.writeFile('blogs.json', JSON.stringify(blogs, null, 2), (err) => {
+    if (err) throw err;
+    console.log('The "data to append" was appended to file!');
+  });
+}
