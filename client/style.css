@@ -18,9 +18,9 @@ main, header {
   text-align: center;
 }
 
-.main-section, article, aside {
+.tag-section, article, aside {
   border-style: solid;
-  border-width: thick;
+  border-width: thin;
 }
 
 article {
@@ -29,11 +29,27 @@ article {
 }
 
 input[type="radio"] {
-  display:block;
+  display: block;
   margin-top: 50px;
 }
 
 footer {
   position: absolute;
   bottom: 50px;
+}
+.sticky-section, .tag-section {
+  background-color: #ffbdc7;
+}
+
+.blog-section section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  margin-left: 15%;
+  margin-right: 15%;
+  border-style: solid;
+  border-width: thick;
+}
+.title-box, .main-box, .tag-and-submit {
+  margin: 10px;
 }
