@@ -75,11 +75,20 @@ footer {
   margin-right: 15%;
   border-style: solid;
   border-width: thick;
-  background-color: grey;
+  background-color: #ffdee3;
+}
+.post-made * {
+  margin: 2%;
 }
 .post-made p {
   color: blue;
+
+  text-align: left;
+  margin-left: 5%;
 }
 .post-made h4 {
   color: brown;
+}
+.post-made button {
+  justify: right;
 }

@@ -35,6 +35,7 @@ function drawBlogs(array) {
                                           <h1>${newData[i].title}</h1>
                                           <h4>${newData[i].text}<h4>
                                           <p>${newData[i].tags}</p>
+                                          <button type="button" id="button">View Comments</button>
                                           </section>`)
   }
   newP[0].textContent = newData[0].title
