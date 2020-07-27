@@ -11,6 +11,8 @@ let rawData = fs.readFileSync('blogs.json');
 let blogs = JSON.parse(rawData);
 let blogID;
 
+app.use(express.static('client'));
+
 app.get('/', (req, res) => res.send('Hello world!'))
 
 app.get('/blogs', (req, res) => res.send(JSON.stringify(blogs)));
