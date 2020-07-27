@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const port = process.env.port || 3000;
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const fs = require('fs-extra');
@@ -50,7 +49,7 @@ app.get('/blogs/search', (req, res) => {
     : res.send(JSON.stringify(`"${searchTerm}" did not return any results!`));
 });
 
-app.listen(port, () => console.log(`Express now departing from http://localhost:${port}!`));
+app.listen(process.env.port || 3000, () => console.log(`Express now departing!`));
 
 const blogSearch = (searchTerm) => {
   return blogs.blogs.filter(
