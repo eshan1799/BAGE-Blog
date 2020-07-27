@@ -9,9 +9,8 @@ let dropdown;
 let formElement = []
 let newData = []
 let blogSection = document.querySelector('.blog-section')
-let blogCreateSection = document.querySelector('.post-made')
 let newP = []
-const newPost = document.querySelector("#post-made");
+const newPost = document.querySelector("#make-post");
 newPostSection = document.querySelector('.new-post')
 commentSection = document.querySelector('.comment-section')
 addNew = document.querySelector('#addNew')
@@ -27,10 +26,14 @@ function loadBlogs() {
     .catch(console.error())
   }
 
+function deleteBlogs() {
+  location.reload()
+}
+
+
 function drawBlogs(array) {
     newData = array.blogs
-
-
+    console.log(newData.length)
   for (i = 0; i < array.blogs.length; i++){
     newPost.insertAdjacentHTML("afterend", `<section class="post-made">
                                           <h1>${newData[i].title}</h1>
@@ -70,6 +73,6 @@ function savePost(e){
     .then(r => r.json())
     .then(console.log(title))
     .catch(console.warn)
-
+    deleteBlogs()
     loadBlogs()
 }
