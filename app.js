@@ -47,8 +47,9 @@ app.post('/blogs/:id/comments', (req, res) => {
 
 // Search through blog posts
 app.get('/blogs/search', (req, res) => {
-  let searchTerm = req.query.q;
+  let searchTerm = req.query.q.toLowerCase();
   let results = blogSearch(searchTerm);
+
   results.length > 0
     ? res.send(JSON.stringify(results))
     : res.send(JSON.stringify(`"${searchTerm}" did not return any results!`));
@@ -68,12 +69,17 @@ app.listen(process.env.PORT || 3000, () => console.log(`Express now departing!`)
 
 // Blog search function
 const blogSearch = (searchTerm) => {
-  return blogs.blogs.filter(
+  if(searchTerm.startsWith("#")) {
+    return blogs.blogs.filter(
+    (blog) => 
+      blog.tags.includes(searchTerm));
+  } else {
+    return blogs.blogs.filter(
     (blog) =>
-      blog.title.includes(searchTerm) ||
-      blog.text.includes(searchTerm) ||
-      blog.tags.includes(searchTerm)
-  );
+      blog.title.toString().toLowerCase().includes(searchTerm)||
+      blog.text.toString().toLowerCase().includes(searchTerm) ||
+      blog.tags.toString().toLowerCase().includes(searchTerm));
+  }
 };
 
 // Rewrites the external blog json file
@@ -83,3 +89,4 @@ function writeBlog() {
     console.log('The "data to append" was appended to file!');
   });
 }
+
