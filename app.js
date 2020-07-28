@@ -14,7 +14,7 @@ let blogs = JSON.parse(rawData);
 let blogID;
 
 // Access client side files
-app.use(express.static('client'));
+// app.use(express.static('client'));
 
 //Home route
 app.get('/', (req, res) => res.send('Hello world!'))
@@ -31,7 +31,7 @@ app.post('/blogs/new', (req, res) => {
 });
 
 // Access comments
-app.get('/blogs/:id//emojis/:emoji', (req, res) => {
+app.get('/blogs/:id/comments', (req, res) => {
   blogID = Number(req.params.id);
   res.send(JSON.stringify(blogs.blogs[blogID].comments))
 });
@@ -85,8 +85,8 @@ const blogSearch = (searchTerm) => {
 // Rewrites the external blog json file
 function writeBlog() {
   fs.writeFile('blogs.json', JSON.stringify(blogs, null, 2), (err) => {
-    if (err) throw err;
-    console.log('The "data to append" was appended to file!');
+    // if (err) throw err;
+    // console.log('The "data to append" was appended to file!');
   });
 }
 

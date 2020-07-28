@@ -62,6 +62,41 @@ describe('Routes', () => {
         done();
       });
     });
+  });
 
-  })
-})
+  // describe('POST /', () => {
+  //
+  //     // in progress
+  //     it("should create new comment", (done) => {
+  //       chai.request(app)
+  //       .post('/blogs/1/comments')
+  //       .end((err, res) => {
+  //         res.body.should.be.a('object');
+  //         // req.should.have.status(200);
+  //         done();
+  //       });
+  //     });
+  //
+  //     // in progress
+  //     it("should create new blog", (done) => {
+  //       chai.request(app)
+  //       .post('/blogs/new')
+  //       // .send({“blogs”:{“title”:“hello”}})
+  //       // .expect(200)
+  //       .end((err, res) => {
+  //         // res.should.have.status(200);
+  //         res.body.should.be.a('object');
+  //         done();
+  //       });
+  //     });
+  //   });
+});
+
+describe("Server Functions", () => {
+  describe('Blog Search', () => {
+    let blogSearch = app.__get__('blogSearch');
+      it('should exist', () => {
+          expect(blogSearch).to.be.a('function');
+      });
+  });
+});
