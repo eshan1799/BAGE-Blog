@@ -11,6 +11,7 @@ let newData = []
 let blogSection = document.querySelector('.blog-section')
 let newP = []
 let emojiCheck;
+let array;
 emojiCheck = document.querySelector("#emojiSelect")
 const newPost = document.querySelector("#make-post");
 newPostSection = document.querySelector('.new-post')
@@ -35,39 +36,74 @@ function deleteBlogs() {
 
 function drawBlogs(array) {
     newData = array.blogs
-  for (i = 0; i < array.blogs.length; i++){
+  for (i = 0; i < newData.length; i++){
     newPost.insertAdjacentHTML("afterend", `<section class="post-made">
                                           <h1>${newData[i].title}</h1>
                                           <h4 id="h4Item">${newData[i].text}<h4>
                                           <p>${newData[i].tags}</p>
-                                          <button type="button" id="button">View Comments</button>
-                                          <select id="emojiSelect" name="emoji">
-                                          <option value="0"></option>
-                                          <option value="1">&#128515;</option>
-                                          <option value="2">&#128525;</option>
-                                          <option value="3">&#128531;</option>
+                                          <button type="button" id="button${i}">View Comments</button>
+                                          <label class="emoji-but">
+                                              <span id="${i}" class="emoji-info">&#128515;</span>
+                                              <p id="react1-${i}">0</p>
+                                          </label>
+                                          <label class="emoji-but">
+                                              <span id="${i}" class="emoji-info">&#128514;</span>
+                                              <p id="react2-${i}">0</p>
+                                          </label>
+                                          <label class="emoji-but">
+                                                <span id="${i}" class="emoji-info">&#128546;</span>
+                                                <p id="react3-${i}">0</p>
+                                          </label>
+                                          <button type="button" id="emojiButton${i}">Send Emoji</button>
                                           </section>`)
+
   }
-  ifCheck()
-}
-function ifCheck() {
-let h4Item = document.getElementById('h4Item')
-console.log(h4Item)
-  // if ( == "2") {
-  //   console.log('hello')
-  // }
+  let  check1Array = document.querySelectorAll(`.emoji-info`)
+
+
+  for (i=0; i < check1Array.length; i++){
+    check1Array[i].addEventListener('click', sendEmojiData)
 }
 
+}
+
+
+
+
+
+function sendEmojiData(e) {
+  let emojiSent = e.target.innerText
+  let idSent = e.target.id
+  console.log(emojiSent)
+  console.log(idSent)
+  if (emojiSent === "😃") {
+    emojiSent = "smiley"
+  } else if (emojiSent === "😂") {
+    emojiSent = "laugh"
+  } else if (emojiSent === "😢") {
+    emojiSent = "sad"
+  }
+console.log(`http://localhost:3000/blogs/${idSent}/emojis/${emojiSent}`)
+  fetch(`http://localhost:3000/blogs/${idSent}/emojis/${emojiSent}`)
+    .then(r => r.json())
+    .then(increaseEmojiCount)
+    .catch(console.warn)
+}
+
+function increaseEmojiCount(data) {
+  console.log(data)
+  document.getElementById('react1-0').textContent = data
+}
 function hideNewPost() {
   newPostSection.setAttribute('style', 'visibility: hidden;')
-
 }
 
 function hideCommentSection() {
   commentSection.setAttribute('style', 'visibility: hidden;')
 }
-function showNewPost() {
 
+function showNewPost() {
+  ifCheck()
   newPostSection.setAttribute('style', 'visibility: visible;')
 }
 
