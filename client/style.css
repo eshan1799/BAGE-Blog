@@ -87,4 +87,34 @@ footer {
 }
 .post-made button {
   justify: right;
+  margin-bottom: 2%;
+}
+.emoji-but {
+  position: relative;
+  display:  inline-flex;
+  width: 60px;
+  height: 60px;
+  font-size: 200%;
+}
+/* hides the HTML checkbox */
+.emoji-but input {
+  position: absolute;
+  cursor: pointer;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+.react p {
+  color: black;
+  text-align: right;
+}
+.react {
+  text-align: right;
+  display: inline-flex;
+  margin-right: 5%;
+}
+h4 {
+  /* display: block; */
+
 }

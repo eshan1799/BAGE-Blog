@@ -3,25 +3,23 @@
     {
       "title": "Number 1",
       "text": "djlas",
-      "tags":
-        "technology",
+      "tags": "technology",
       "comments": [
         "comment 1",
         "comment 2",
         "comment 3"
       ],
-      "emojis":
-        {
+      "emojis": {
         "emoji 1": 0,
         "emoji 2": 0,
         "emoji 3": 0
-        },
+      },
       "key": 0
     },
     {
       "title": "Number 2",
       "text": "djlas",
-      "tags":"technology",
+      "tags": "technology",
       "comments": [
         "comment 1",
         "comment 2",
