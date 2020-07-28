@@ -14,7 +14,7 @@ let blogs = JSON.parse(rawData);
 let blogID;
 
 // Access client side files
-// app.use(express.static('client'));
+app.use(express.static('client'));
 
 //Home route
 app.get('/', (req, res) => res.send('Hello world!'))
@@ -31,14 +31,14 @@ app.post('/blogs/new', (req, res) => {
 });
 
 // Access comments
-app.get('/blogs/:id/comments', (req, res) => {
+app.get('/blogs/:id//emojis/:emoji', (req, res) => {
   blogID = Number(req.params.id);
   res.send(JSON.stringify(blogs.blogs[blogID].comments))
 });
 
 // Post new comment
 app.post('/blogs/:id/comments', (req, res) => {
-  const newComment = req.body;
+  const newComment = JSON.parse(req.body);
   blogID = req.params.id;
   blogs.blogs[blogID].comments.push(newComment);
   writeBlog();
