@@ -3,8 +3,7 @@
     {
       "title": "Number 1",
       "text": "djlas",
-      "tags":
-        "technology",
+      "tags": "technology",
       "comments": [
         "comment 1",
         "comment 2",
@@ -42,11 +41,7 @@
     {
       "title": "Number 4",
       "text": "djlas",
-      "tags": [
-        "music",
-        "art",
-        "technology"
-      ],
+      "tags": "art",
       "comments": [
         "comment 1",
         "comment 2",
