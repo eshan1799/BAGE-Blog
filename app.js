@@ -85,8 +85,8 @@ const blogSearch = (searchTerm) => {
 // Rewrites the external blog json file
 function writeBlog() {
   fs.writeFile('blogs.json', JSON.stringify(blogs, null, 2), (err) => {
-    // if (err) throw err;
-    // console.log('The "data to append" was appended to file!');
+    if (err) throw err;
+    console.log('The "data to append" was appended to file!');
   });
 }
 
