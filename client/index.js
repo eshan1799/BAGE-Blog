@@ -81,10 +81,17 @@ if (document.getElementById('emoji1-0').checked === true) {
 }
 if (document.getElementById('emoji2-0').checked === true) {
   check2 = true
+<<<<<<< HEAD
 }
 if (document.getElementById('emoji3-0').checked === true) {
   check3 = true
 }
+=======
+}
+if (document.getElementById('emoji3-0').checked === true) {
+  check3 = true
+}
+>>>>>>> master
   console.log(check1)
   console.log(check2)
   console.log(check3)
@@ -115,13 +122,17 @@ function savePost(e){
     console.log(dropdown)
     newPostSection.setAttribute('style', 'visibility: hidden;')
 
+    const data = {title : `${title}`, text : `${text}`, tags : `${dropdown}`}
     const options = {
         method: 'POST',
-        body: JSON.stringify(`"Title: ${title}", "Text: ${text}", "Tags: ${dropdown}"`),
+        headers : {
+          "ContentType": "application/json"
+        },
+        body: JSON.stringify(data)
     };
     fetch('http://localhost:3000/blogs/new', options)
     .then(r => r.json())
     .then(console.log(title))
     .catch(console.warn)
     deleteBlogs()
-  }
+}
