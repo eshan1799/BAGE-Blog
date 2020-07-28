@@ -41,21 +41,21 @@ function drawBlogs(array) {
                                           <h4 id="h4Item">${newData[i].text}<h4>
                                           <p>${newData[i].tags}</p>
                                           <button type="button" id="button">View Comments</button>
-                                          <select id="emojiSelect" name="emoji">
+                                          <select id="emojiSelect${i}" name="emoji">
                                           <option value="0"></option>
                                           <option value="1">&#128515;</option>
                                           <option value="2">&#128525;</option>
                                           <option value="3">&#128531;</option>
                                           </section>`)
   }
-  ifCheck()
+ifCheck()
 }
 function ifCheck() {
-let h4Item = document.getElementById('h4Item')
-console.log(h4Item)
-  // if ( == "2") {
-  //   console.log('hello')
-  // }
+let emojiCheck0 = document.getElementById('emojiSelect0').value
+console.log(emojiCheck0)
+  if ( emojiCheck0 == "0") {
+    console.log('hello')
+  }
 }
 
 function hideNewPost() {
