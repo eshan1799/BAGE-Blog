@@ -39,59 +39,61 @@ function drawBlogs(array) {
   for (i = 0; i < newData.length; i++){
     newPost.insertAdjacentHTML("afterend", `<section class="post-made">
                                           <h1>${newData[i].title}</h1>
-                                          <label class="react">&#128515;
-                                          <p id="react1-${i}">0</p>
-                                          </label>
-                                          <label class="react">&#128514;
-                                          <p id="react2-${i}">0</p>
-                                          </label>
-                                          <label class="react">&#128546;
-                                          <p id="react3-${i}">0</p>
-                                          </label>
                                           <h4 id="h4Item">${newData[i].text}<h4>
                                           <p>${newData[i].tags}</p>
                                           <button type="button" id="button${i}">View Comments</button>
                                           <label class="emoji-but">
-                                              <input type="checkbox" id="emoji1-${i}">
-                                              <span class="emoji-slider">&#128515;</span>
+                                              <span id="${i}" class="emoji-info">&#128515;</span>
+                                              <p id="react1-${i}">0</p>
                                           </label>
                                           <label class="emoji-but">
-                                              <input type="checkbox" id="emoji2-${i}">
-                                              <span class="emoji-slider">&#128514;</span>
+                                              <span id="${i}" class="emoji-info">&#128514;</span>
+                                              <p id="react2-${i}">0</p>
                                           </label>
                                           <label class="emoji-but">
-                                              <input type="checkbox" id="emoji3-${i}">
-                                              <span class="emoji-slider">&#128546;</span>
+                                                <span id="${i}" class="emoji-info">&#128546;</span>
+                                                <p id="react3-${i}">0</p>
                                           </label>
                                           <button type="button" id="emojiButton${i}">Send Emoji</button>
                                           </section>`)
 
   }
-ifCheck()
+  let  check1Array = document.querySelectorAll(`.emoji-info`)
+
+
+  for (i=0; i < check1Array.length; i++){
+    check1Array[i].addEventListener('click', sendEmojiData)
+}
+
 }
 
 
 
-function ifCheck() {
-  let check1 = false
-  let check2 = false
-  let check3 = false
-if (document.getElementById('emoji1-0').checked === true) {
-  check1 = true
-}
-if (document.getElementById('emoji2-0').checked === true) {
-  check2 = true
-}
-if (document.getElementById('emoji3-0').checked === true) {
-  check3 = true
-}
-  console.log(check1)
-  console.log(check2)
-  console.log(check3)
+
+
+function sendEmojiData(e) {
+  let emojiSent = e.target.innerText
+  let idSent = e.target.id
+  console.log(emojiSent)
+  console.log(idSent)
+  if (emojiSent === "😃") {
+    emojiSent = "smiley"
+  } else if (emojiSent === "😂") {
+    emojiSent = "laugh"
+  } else if (emojiSent === "😢") {
+    emojiSent = "sad"
   }
+console.log(`http://localhost:3000/blogs/${idSent}/emojis/${emojiSent}`)
+  fetch(`http://localhost:3000/blogs/${idSent}/emojis/${emojiSent}`)
+    .then(r => r.json())
+    .then(increaseEmojiCount)
+    .catch(console.warn)
+}
 
-
-
+function increaseEmojiCount(data) {
+  console.log(data)
+  document.getElementById('react1-0').textContent = data
+}
 function hideNewPost() {
   newPostSection.setAttribute('style', 'visibility: hidden;')
 }
