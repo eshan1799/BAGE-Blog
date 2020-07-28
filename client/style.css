@@ -67,6 +67,7 @@ footer {
 .add-comment {
   border-style: solid;
   border-width: thick;
+  margin-top: 5%;
 }
 .post-made {
   display: flex;

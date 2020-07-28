@@ -14,10 +14,10 @@ let blogs = JSON.parse(rawData);
 let blogID;
 
 // Access client side files
-// app.use(express.static('client'));
+app.use(express.static('client'));
 
 //Home route
-app.get('/', (req, res) => res.send('Hello world!'))
+app.get('/', (req, res) => res.send('Hello world!'));
 
 //All blogs route
 app.get('/blogs', (req, res) => res.send(JSON.stringify(blogs)));

@@ -15,7 +15,7 @@ let array;
 emojiCheck = document.querySelector("#emojiSelect")
 const newPost = document.querySelector("#make-post");
 newPostSection = document.querySelector('.new-post')
-commentSection = document.querySelector('.comment-section')
+newCommentSection = document.querySelector('.comment-section')
 addNew = document.querySelector('#addNew')
 addNew.addEventListener('click', showNewPost)
 hideNewPost()
@@ -40,7 +40,7 @@ function drawBlogs(array) {
                                           <h1>${newData[i].title}</h1>
                                           <h4 id="h4Item">${newData[i].text}<h4>
                                           <p>${newData[i].tags}</p>
-                                          <button type="button" id="button${i}">View Comments</button>
+                                          <button type="button" class="button" id="${i}">View Comments</button>
                                           <label class="emoji-but">
                                               <span id="${i}" class="emoji-info">&#128515;</span>
                                               <p id="react1-${i}">0</p>
@@ -66,14 +66,13 @@ function drawBlogs(array) {
 //load all comments when pressed view comment
 let newComment = document.querySelector("#comment")
 let commentBtn = document.querySelectorAll(".button");
-console.log(commentBtn)
+// console.log(commentBtn)
 for (i = 0; i < commentBtn.length; i++){
   commentBtn[i].addEventListener("click", loadComments)
 }
 
 let uniqueBtn ;
 function loadComments (e) {
-  newComment.style.visibility = "hidden";
   uniqueBtn = e.target.id
   console.log(uniqueBtn)
 
@@ -124,7 +123,7 @@ fetch(`http://localhost:3000/blogs/${uniqueBtn}/comments`, options)
   .then(r => r.json())
   .catch(console.warn)
 }
-}
+
 
 
 
@@ -157,11 +156,10 @@ function hideNewPost() {
 }
 
 function hideCommentSection() {
-  commentSection.setAttribute('style', 'visibility: hidden;')
+  newCommentSection.setAttribute('style', 'visibility: hidden;')
 }
 
 function showNewPost() {
-  ifCheck()
   newPostSection.setAttribute('style', 'visibility: visible;')
 }
 
