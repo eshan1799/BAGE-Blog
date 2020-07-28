@@ -71,7 +71,7 @@ app.listen(process.env.PORT || 3000, () => console.log(`Express now departing!`)
 const blogSearch = (searchTerm) => {
   if(searchTerm.startsWith("#")) {
     return blogs.blogs.filter(
-    (blog) => 
+    (blog) =>
       blog.tags.includes(searchTerm));
   } else {
     return blogs.blogs.filter(
@@ -89,4 +89,3 @@ function writeBlog() {
     console.log('The "data to append" was appended to file!');
   });
 }
-
