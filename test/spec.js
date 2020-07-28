@@ -1,4 +1,6 @@
 const chai = require('chai');
+const expect = require('chai').expect;
+const chaiHttp = require('chai-http')
 const rewire = require('rewire');
 
 let app = rewire('../app.js');
@@ -13,6 +15,7 @@ describe('Routes', () => {
         .get('/')
         .end((err, res) => {
           res.should.have.status(200);
+          res.body.should.be.a('object');
           expect(res.body).to.equal('Hello world!');
           done();
         })

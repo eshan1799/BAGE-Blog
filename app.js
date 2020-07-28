@@ -89,3 +89,5 @@ function writeBlog() {
     console.log('The "data to append" was appended to file!');
   });
 }
+
+module.exports = app;
