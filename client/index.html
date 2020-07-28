@@ -3,36 +3,69 @@
   <head>
     <meta charset="utf-8">
     <title>BAGE Blog</title>
-    <script src="index.js"></script>
+    <script defer src="index.js"></script>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <header>
-      <section>
-        <p>home button</p>
+      <section class="sticky-section">
+        <img src="home_images/home.png" alt="home button"/>
       </section>
-      <section>
-        <form class="" action="index.html" method="post">
+      <section class="sticky-section">
+        <form class="search" action="index.html" method="post">
           <input type="search" name="" value="" placeholder="Search for Title">
         </form>
       </section>
-      <section>
-        <p>add post</p>
+      <section class="sticky-section">
+        <img id="addNew" src="home_images/add.png" alt="Add New Post"/>
       </section>
     </header>
     <main>
-      <section class="main-section">
+      <section class="tag-section">
         <input type="radio" name="" value="">
         <input type="radio" name="" value="">
         <input type="radio" name="" value="">
         <footer class="footer">There are currently x number of blog posts</footer>
       </section>
-      <article class="">
-        <h1>HEADER</h1>
-        <p>text</p>
+      <article class="blog-section">
+        <section class="new-post">
+          <form class="" action="index.html" method="post"/>
+          <div class="title-box">
+            <input type="text" id="title" name="title" placeholder="Enter your Title here" maxlength="35" size="39">
+          </div>
+          <div class="main-box">
+            <textarea name="blog-text" id="blogText"rows="6" cols="35" maxlength="210"placeholder="Enter your Blog Text here"></textarea>
+          </div>
+          <div class="gif-add">
+            <input type="text" name="" placeholder="Insert Giphy Link">
+          </div>
+          <div class="tag-and-submit">
+            <label for="category">Choose a Tag:</label>
+            <select name="category" id="category">
+              <option value="technology">Technology</option>
+              <option value="business">Business</option>
+              <option value="medical">Medical</option>
+              <option value="politics">Politics</option>
+              <option value="covid">Covid-19</option>
+              <option value="sport">Sport</option>
+              <option value="other">Other</option>
+            </select>
+            <input type="submit" id="submit" value="Post">
+          </div>
+          </form>
+        </section>
+        <div id="make-post">
+
+        </div>
       </article>
-      <aside class="">
-        <p>TEST ASIDE</p>
+      <aside class="comment-section">
+        <section class="comment-area">
+          <div class="add-comment">
+            <textarea name="add-comment-box" rows="5" cols="20"></textarea>
+            <input type="submit" name="" value="Add Comment">
+
+          </div>
+        </section>
       </aside>
     </main>
   </body>

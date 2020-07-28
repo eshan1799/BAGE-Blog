@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  overflow: hidden;
 }
 
 body {
@@ -18,22 +19,72 @@ main, header {
   text-align: center;
 }
 
-.main-section, article, aside {
+.tag-section, article, aside {
   border-style: solid;
-  border-width: thick;
+  border-width: thin;
 }
 
 article {
   height: calc(100vh-50px);
-  overflow: scroll;
+  overflow: auto;
 }
 
 input[type="radio"] {
-  display:block;
+  display: block;
   margin-top: 50px;
 }
 
 footer {
   position: absolute;
   bottom: 50px;
+}
+.sticky-section, .tag-section {
+  background-color: #ffbdc7;
+}
+.sticky-section img, .sticky-section .search {
+  margin-top: 5px;
+}
+
+
+.blog-section section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  margin-left: 15%;
+  margin-right: 15%;
+  border-style: solid;
+  border-width: thick;
+}
+.title-box, .main-box, .tag-and-submit {
+  margin: 10px;
+}
+.comment-area {
+  display: flex;
+  flex-direction: column;
+  margin: 10%;
+
+}
+.add-comment {
+  border-style: solid;
+  border-width: thick;
+}
+.post-made {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffdee3;
+}
+.post-made * {
+  margin-top: 2%;
+}
+.post-made p {
+  color: red;
+
+  text-align: left;
+  margin-left: 5%;
+}
+.post-made h4 {
+  color: brown;
+}
+.post-made button {
+  justify: right;
 }
