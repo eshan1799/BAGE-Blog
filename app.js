@@ -14,7 +14,7 @@ let blogs = JSON.parse(rawData);
 let blogID;
 
 // Access client side files
-app.use(express.static('client'));
+// app.use(express.static('client'));
 
 //Home route
 app.get('/', (req, res) => res.send('Hello world!'))
@@ -24,7 +24,7 @@ app.get('/blogs', (req, res) => res.send(JSON.stringify(blogs)));
 
 // New blog post route
 app.post('/blogs/new', (req, res) => {
-  const newPost = req.body;
+  const newPost = JSON.parse(req.body);
   blogs.blogs.push(newPost);
   writeBlog();
   res.send(JSON.stringify(newPost));
@@ -71,7 +71,7 @@ app.listen(process.env.PORT || 3000, () => console.log(`Express now departing!`)
 const blogSearch = (searchTerm) => {
   if(searchTerm.startsWith("#")) {
     return blogs.blogs.filter(
-    (blog) => 
+    (blog) =>
       blog.tags.includes(searchTerm));
   } else {
     return blogs.blogs.filter(
@@ -89,3 +89,8 @@ function writeBlog() {
     console.log('The "data to append" was appended to file!');
   });
 }
+<<<<<<< HEAD
+=======
+
+module.exports = app;
+>>>>>>> a44a815b1ffaeb2c047d1c7175de6e1aa2796122

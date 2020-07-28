@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  overflow: hidden;
 }
 
 body {
@@ -25,7 +26,7 @@ main, header {
 
 article {
   height: calc(100vh-50px);
-  overflow: scroll;
+  overflow: auto;
 }
 
 input[type="radio"] {
@@ -66,4 +67,24 @@ footer {
 .add-comment {
   border-style: solid;
   border-width: thick;
+}
+.post-made {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffdee3;
+}
+.post-made * {
+  margin-top: 2%;
+}
+.post-made p {
+  color: red;
+
+  text-align: left;
+  margin-left: 5%;
+}
+.post-made h4 {
+  color: brown;
+}
+.post-made button {
+  justify: right;
 }
