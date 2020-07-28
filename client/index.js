@@ -33,7 +33,6 @@ function deleteBlogs() {
   location.reload()
 }
 
-
 function drawBlogs(array) {
     newData = array.blogs
   for (i = 0; i < newData.length; i++){
@@ -60,14 +59,72 @@ function drawBlogs(array) {
   }
   let  check1Array = document.querySelectorAll(`.emoji-info`)
 
-
   for (i=0; i < check1Array.length; i++){
     check1Array[i].addEventListener('click', sendEmojiData)
 }
 
+//load all comments when pressed view comment
+let newComment = document.querySelector("#comment")
+let commentBtn = document.querySelectorAll(".button");
+console.log(commentBtn)
+for (i = 0; i < commentBtn.length; i++){
+  commentBtn[i].addEventListener("click", loadComments)
 }
 
+let uniqueBtn ;
+function loadComments (e) {
+  newComment.style.visibility = "hidden";
+  uniqueBtn = e.target.id
+  console.log(uniqueBtn)
 
+  fetch("http://localhost:3000/blogs")
+  .then(r => r.json())
+  .then(drawComments(uniqueBtn))
+  .catch(console.error())
+
+}
+
+function drawComments(Btn){
+  // while (newComment.firstChild) {
+  //   newComment.removeChild(newComment.lastChild);
+  // }
+
+  showNewComments()
+
+  for (i = 0; i < newData[Btn].comments.length; i++){
+          newComment.insertAdjacentHTML("afterend", `<section class="add-comment">
+                                             <h1>${newData[Btn].comments[i]}</h1>
+                                             </section>` )
+//   if (newComment.hasChildNodes()) {
+//     newComment.removeChild(newComment.childNodes);
+// }
+  }
+}
+}
+
+//add new comment and post it
+const addComment = document.querySelector("#addCommentButton")
+addComment.addEventListener("click", postComment)
+
+function postComment(e) {
+const posting = document.getElementById("commentTextbox").value
+const newComment = document.querySelector("#comment")
+newComment.insertAdjacentHTML("afterend", `<section class="add-comment">
+                                       <h1>${posting}</h1>
+                                       </section>` )
+  const options = {
+      method: 'POST',
+      headers : {
+        "ContentType": "application/json"
+      },
+      body: JSON.stringify(posting)
+  };
+
+fetch(`http://localhost:3000/blogs/${uniqueBtn}/comments`, options)
+  .then(r => r.json())
+  .catch(console.warn)
+}
+}
 
 
 
@@ -94,6 +151,7 @@ function increaseEmojiCount(data) {
   console.log(data)
   document.getElementById('react1-0').textContent = data
 }
+
 function hideNewPost() {
   newPostSection.setAttribute('style', 'visibility: hidden;')
 }
@@ -107,6 +165,10 @@ function showNewPost() {
   newPostSection.setAttribute('style', 'visibility: visible;')
 }
 
+function showNewComments() {
+  newCommentSection.setAttribute('style', 'visibility: visible;')
+}
+
 function savePost(e){
     e.preventDefault();
     title = document.getElementById("title").value;
@@ -117,10 +179,16 @@ function savePost(e){
     console.log(dropdown)
     newPostSection.setAttribute('style', 'visibility: hidden;')
 
+    const data = {title : `${title}`, text : `${text}`, tags : `${dropdown}`, comments : [ ] ,  emojis : { }, key : "" }
+
     const options = {
         method: 'POST',
-        body: JSON.stringify(`"Title: ${title}", "Text: ${text}", "Tags: ${dropdown}"`),
+        headers : {
+          "ContentType": "application/json"
+        },
+        body: JSON.stringify(data)
     };
+
     fetch('http://localhost:3000/blogs/new', options)
     .then(r => r.json())
     .then(console.log(title))
