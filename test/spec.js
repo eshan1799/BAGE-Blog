@@ -16,7 +16,7 @@ describe('Routes', () => {
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
-          expect(res.body).to.eql('Hello world!');
+          expect(res.text).to.eql('Hello world!');
           done();
         })
     })
