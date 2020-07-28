@@ -24,7 +24,7 @@ app.get('/blogs', (req, res) => res.send(JSON.stringify(blogs)));
 
 // New blog post route
 app.post('/blogs/new', (req, res) => {
-  const newPost = req.body;
+  const newPost = JSON.parse(req.body);
   blogs.blogs.push(newPost);
   writeBlog();
   res.send(JSON.stringify(newPost));
