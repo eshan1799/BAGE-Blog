@@ -10,6 +10,7 @@ chai.should();
 
 describe('Routes', () => {
   describe('GET /', () => {
+
     it("should get home route", (done) => {
       chai.request(app)
         .get('/')
@@ -18,7 +19,49 @@ describe('Routes', () => {
           res.body.should.be.a('object');
           expect(res.text).to.eql('Hello world!');
           done();
-        })
-    })
+        });
+    });
+
+    it("should return all blogs", (done) => {
+      chai.request(app)
+        .get('/blogs')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+
+    it("should return comments", (done) => {
+      chai.request(app)
+        .get('/blogs/1/comments')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        });
+      });
+
+    it("should return search results", (done) => {
+      chai.request(app)
+      .get('/blogs/search?q=technology')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        done();
+      });
+    });
+
+    it("should return no search results", (done) => {
+      chai.request(app)
+      .get('/blogs/search?q=supercalifragilisticexpialidocious')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        expect(res.text).to.eql(`"supercalifragilisticexpialidocious" did not return any results!`);
+        done();
+      });
+    });
+
   })
 })

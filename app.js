@@ -52,7 +52,7 @@ app.get('/blogs/search', (req, res) => {
 
   results.length > 0
     ? res.send(JSON.stringify(results))
-    : res.send(JSON.stringify(`"${searchTerm}" did not return any results!`));
+    : res.send(`"${searchTerm}" did not return any results!`);
 });
 
 // Emoji counter
