@@ -14,7 +14,10 @@ let emojiCheck;
 let array;
 let newComment;
 let uniqueBtn ;
+let emojiSent;
+let idSent;
 let gifyURL;
+
 
 newComment = document.getElementById("comment")
 emojiCheck = document.querySelector("#emojiSelect")
@@ -95,15 +98,15 @@ function drawBlogs(array) {
                                           <button type="submit" class="button" id="${i}">View Comments</button>
                                           <label class="emoji-but">
                                               <span id="${i}" class="emoji-info">&#128515;</span>
-                                              <p id="react1-${i}">0</p>
+                                              <p id="react1-${i}">${newData[i].emojis.smiley}</p>
                                           </label>
                                           <label class="emoji-but">
                                               <span id="${i}" class="emoji-info">&#128514;</span>
-                                              <p id="react2-${i}">0</p>
+                                              <p id="react2-${i}">${newData[i].emojis.laugh}</p>
                                           </label>
                                           <label class="emoji-but">
                                                 <span id="${i}" class="emoji-info">&#128546;</span>
-                                                <p id="react3-${i}">0</p>
+                                                <p id="react3-${i}">${newData[i].emojis.sad}</p>
                                           </label>
                                           <button type="button" id="emojiButton${i}">Send Emoji</button>
                                           </section>`)
@@ -181,8 +184,8 @@ fetch(`http://localhost:3000/blogs/${uniqueBtn}/comments`, options)
 
 
 function sendEmojiData(e) {
-  let emojiSent = e.target.innerText
-  let idSent = e.target.id
+  emojiSent = e.target.innerText
+  idSent = e.target.id
   console.log(emojiSent)
   console.log(idSent)
   if (emojiSent === "😃") {
@@ -192,7 +195,7 @@ function sendEmojiData(e) {
   } else if (emojiSent === "😢") {
     emojiSent = "sad"
   }
-console.log(`http://localhost:3000/blogs/${idSent}/emojis/${emojiSent}`)
+
   fetch(`http://localhost:3000/blogs/${idSent}/emojis/${emojiSent}`)
     .then(r => r.json())
     .then(increaseEmojiCount)
@@ -200,9 +203,18 @@ console.log(`http://localhost:3000/blogs/${idSent}/emojis/${emojiSent}`)
 }
 
 function increaseEmojiCount(data) {
-  console.log(data)
-  document.getElementById('react1-0').textContent = data
+  let smileyCounter = document.getElementById(`react1-${idSent}`)
+  let laughCounter = document.getElementById(`react2-${idSent}`)
+  let sadCounter = document.getElementById(`react3-${idSent}`)
+  if (emojiSent == "smiley") {
+    smileyCounter.textContent = data
+  } else if (emojiSent == "laugh") {
+    laughCounter.textContent = data
+  } else if (emojiSent == "sad") {
+    sadCounter.textContent = data
+  }
 }
+
 
 function hideNewPost() {
   newPostSection.setAttribute('style', 'visibility: hidden;')
