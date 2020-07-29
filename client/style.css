@@ -87,7 +87,7 @@ footer {
   color: brown;
 }
 .post-made button {
-  justify: right;
+  justify-content: right;
   margin-bottom: 2%;
 }
 .emoji-but {
@@ -126,8 +126,4 @@ footer {
 /* h4 {
   display: block;
 
-<<<<<<< HEAD
 }; */
-=======
-} */
->>>>>>> 19138d9aec81dc76ee5b242c07fef228248b2459
