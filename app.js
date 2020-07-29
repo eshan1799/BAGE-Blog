@@ -17,7 +17,7 @@ let blogID;
 app.use(express.static('client'));
 
 //Home route
-app.get('/', (req, res) => res.send('Hello world!'))
+app.get('/', (req, res) => res.send('Hello world!'));
 
 //All blogs route
 app.get('/blogs', (req, res) => res.send(JSON.stringify(blogs)));
@@ -38,7 +38,7 @@ app.get('/blogs/:id/comments', (req, res) => {
 
 // Post new comment
 app.post('/blogs/:id/comments', (req, res) => {
-  const newComment = req.body;
+  const newComment = JSON.parse(req.body);
   blogID = req.params.id;
   blogs.blogs[blogID].comments.push(newComment);
   writeBlog();
@@ -89,5 +89,6 @@ function writeBlog() {
     console.log('The "data to append" was appended to file!');
   });
 }
+
 
 module.exports = app;
