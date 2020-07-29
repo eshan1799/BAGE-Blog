@@ -10,9 +10,9 @@
         "comment 3"
       ],
       "emojis": {
-        "emoji 1": 0,
-        "emoji 2": 0,
-        "emoji 3": 0
+        "smiley": 0,
+        "laugh": 0,
+        "sad": 0
       },
       "key": 0
     },
@@ -25,6 +25,11 @@
         "comment 2",
         "comment 3"
       ],
+      "emojis": {
+        "smiley": 0,
+        "laugh": 0,
+        "sad": 0
+      },
       "key": 1
     },
     {
@@ -36,6 +41,11 @@
         "comment 2",
         "comment 3"
       ],
+      "emojis": {
+        "smiley": 0,
+        "laugh": 0,
+        "sad": 0
+      },
       "key": 2
     },
     {
@@ -49,8 +59,8 @@
       ],
       "emojis": {
         "smiley": 0,
-        "emoji 2": 0,
-        "emoji 3": 0
+        "laugh": 0,
+        "sad": 0
       },
       "key": 3
     },
@@ -59,7 +69,11 @@
       "text": "bnmbm",
       "tags": "technology",
       "comments": [],
-      "emojis": {},
+      "emojis": {
+        "smiley": 0,
+        "laugh": 0,
+        "sad": 0
+      },
       "key": ""
     },
     {
@@ -67,7 +81,11 @@
       "text": "Hello there bro",
       "tags": "medical",
       "comments": [],
-      "emojis": {},
+      "emojis": {
+        "smiley": 5,
+        "laugh": 3,
+        "sad": 1
+      },
       "key": ""
     }
   ]
