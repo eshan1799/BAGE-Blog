@@ -73,6 +73,9 @@ for (i = 0; i < commentBtn.length; i++){
 
 let uniqueBtn ;
 function loadComments (e) {
+
+  // newComment.reset();
+
   uniqueBtn = e.target.id
   console.log(uniqueBtn)
 
@@ -94,9 +97,7 @@ function drawComments(Btn){
           newComment.insertAdjacentHTML("afterend", `<section class="add-comment">
                                              <h1>${newData[Btn].comments[i]}</h1>
                                              </section>` )
-//   if (newComment.hasChildNodes()) {
-//     newComment.removeChild(newComment.childNodes);
-// }
+
   }
 }
 }
