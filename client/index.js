@@ -13,6 +13,8 @@ let newP = []
 let emojiCheck;
 let array;
 let newComment;
+let uniqueBtn ;
+
 newComment = document.getElementById("comment")
 emojiCheck = document.querySelector("#emojiSelect")
 const newPost = document.querySelector("#make-post");
@@ -63,6 +65,8 @@ function drawBlogs(array) {
 
   for (i=0; i < check1Array.length; i++){
     check1Array[i].addEventListener('click', sendEmojiData)
+    const addComment = document.querySelector("#addCommentButton")
+    addComment.addEventListener("click", postComment)
 }
 
 //load all comments when pressed view comment
@@ -72,11 +76,9 @@ for (i = 0; i < commentBtn.length; i++){
   commentBtn[i].addEventListener("click", loadComments)
 }
 
-let uniqueBtn ;
 function loadComments (e) {
-  newComment.reset()
-  uniqueBtn = e.target.id
 
+  uniqueBtn = e.target.id
   fetch("http://localhost:3000/blogs")
   .then(r => r.json())
   .then(drawComments(uniqueBtn))
@@ -86,10 +88,8 @@ function loadComments (e) {
 
 function drawComments(Btn){
   let commentArray = document.querySelectorAll('.comment-added')
-  console.log(commentArray.length)
-
+  console.log(Btn)
   for (i=0; i < commentArray.length; i++) {
-    console.log(commentArray.length)
     newComment.removeChild(newComment.lastChild)
   }
 
@@ -105,10 +105,10 @@ function drawComments(Btn){
 }
 
 //add new comment and post it
-const addComment = document.querySelector("#addCommentButton")
-addComment.addEventListener("click", postComment)
+
 
 function postComment(e) {
+
 const posting = document.getElementById("commentTextbox").value
 const newComment = document.querySelector("#comment")
 newComment.insertAdjacentHTML("afterbegin", `<section class="comment-added">
@@ -124,7 +124,9 @@ newComment.insertAdjacentHTML("afterbegin", `<section class="comment-added">
 
 fetch(`http://localhost:3000/blogs/${uniqueBtn}/comments`, options)
   .then(r => r.json())
+  .then(loadComments(uniqueBtn))
   .catch(console.warn)
+
 }
 
 
@@ -193,7 +195,6 @@ function savePost(e){
 
     fetch('http://localhost:3000/blogs/new', options)
     .then(r => r.json())
-    .then(console.log(title))
     .catch(console.warn)
     deleteBlogs()
   }
