@@ -117,9 +117,9 @@
         "hello"
       ],
       "emojis": {
-        "laugh": 0,
-        "smiley": 0,
-        "sad": 0
+        "laugh": 3,
+        "smiley": 3,
+        "sad": 3
       },
       "key": ""
     },
@@ -133,8 +133,8 @@
       ],
       "emojis": {
         "laugh": 5,
-        "smiley": 11,
-        "sad": 1
+        "smiley": 16,
+        "sad": 2
       },
       "key": ""
     }
