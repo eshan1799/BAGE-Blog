@@ -64,7 +64,7 @@ footer {
   margin: 10%;
 
 }
-.add-comment {
+.add-comment, .comment-added {
   border-style: solid;
   border-width: thick;
   margin-top: 5%;
