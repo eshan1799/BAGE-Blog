@@ -14,6 +14,7 @@
         "laugh": 0,
         "sad": 0
       },
+      "gif": "",
       "key": 0
     },
     {
@@ -30,6 +31,7 @@
         "laugh": 0,
         "sad": 0
       },
+      "gif": "",
       "key": 1
     },
     {
@@ -46,6 +48,7 @@
         "laugh": 0,
         "sad": 0
       },
+      "gif": "",
       "key": 2
     },
     {
@@ -63,6 +66,7 @@
         "laugh": 0,
         "sad": 0
       },
+      "gif": "",
       "key": 3
     },
     {
@@ -78,6 +82,7 @@
         "smiley": 0,
         "sad": 0
       },
+      "gif": "",
       "key": ""
     },
     {
@@ -106,36 +111,7 @@
         "smiley": 0,
         "sad": 0
       },
-      "key": ""
-    },
-    {
-      "title": "rertererefh",
-      "text": "afhafh",
-      "tags": "medical",
-      "comments": [
-        "tere",
-        "hello"
-      ],
-      "emojis": {
-        "laugh": 0,
-        "smiley": 0,
-        "sad": 0
-      },
-      "key": ""
-    },
-    {
-      "title": "haehaha",
-      "text": "jtejajaj",
-      "tags": "business",
-      "comments": [
-        "wegewgw",
-        "sdsds"
-      ],
-      "emojis": {
-        "laugh": 1,
-        "smiley": 2,
-        "sad": 1
-      },
+      "gif": "",
       "key": ""
     }
   ]

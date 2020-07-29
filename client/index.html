@@ -37,7 +37,15 @@
               <textarea name="blog-text" id="blogText"rows="6" cols="35" maxlength="210"placeholder="Enter your Blog Text here"></textarea>
             </div>
             <div class="gif-add">
-              <input type="text" name="" placeholder="Insert Giphy Link">
+              <form id="addGifForm" action="index.html" method="post">
+                <input id="gifSearchText" type="text" placeholder="Search Gif">
+                <button type="button" id="gifSearchButton">Get Gif</button>
+              </form>
+            </div>
+            <div class="returnedGif">
+              <img src="" id="gifImg1">
+              <img src="" id="gifImg2">
+              <img src="" id="gifImg3">
             </div>
             <div class="tag-and-submit">
               <label for="category">Choose a Tag:</label>
@@ -55,7 +63,6 @@
             </form>
           </section>
           <div id="make-post">
-
           </div>
         </article>
         <aside class="comment-section">
