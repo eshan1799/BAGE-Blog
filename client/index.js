@@ -12,6 +12,8 @@ let blogSection = document.querySelector('.blog-section')
 let newP = []
 let emojiCheck;
 let array;
+let newComment;
+newComment = document.getElementById("comment")
 emojiCheck = document.querySelector("#emojiSelect")
 const newPost = document.querySelector("#make-post");
 newPostSection = document.querySelector('.new-post')
@@ -40,7 +42,7 @@ function drawBlogs(array) {
                                           <h1>${newData[i].title}</h1>
                                           <h4 id="h4Item">${newData[i].text}<h4>
                                           <p>${newData[i].tags}</p>
-                                          <button type="button" class="button" id="${i}">View Comments</button>
+                                          <button type="submit" class="button" id="${i}">View Comments</button>
                                           <label class="emoji-but">
                                               <span id="${i}" class="emoji-info">&#128515;</span>
                                               <p id="react1-${i}">0</p>
@@ -64,7 +66,6 @@ function drawBlogs(array) {
 }
 
 //load all comments when pressed view comment
-let newComment = document.querySelector("#comment")
 let commentBtn = document.querySelectorAll(".button");
 // console.log(commentBtn)
 for (i = 0; i < commentBtn.length; i++){
@@ -73,8 +74,8 @@ for (i = 0; i < commentBtn.length; i++){
 
 let uniqueBtn ;
 function loadComments (e) {
+  newComment.reset()
   uniqueBtn = e.target.id
-  console.log(uniqueBtn)
 
   fetch("http://localhost:3000/blogs")
   .then(r => r.json())
@@ -84,20 +85,22 @@ function loadComments (e) {
 }
 
 function drawComments(Btn){
-  // while (newComment.firstChild) {
-  //   newComment.removeChild(newComment.lastChild);
-  // }
+  let commentArray = document.querySelectorAll('.comment-added')
+  console.log(commentArray.length)
+
+  for (i=0; i < commentArray.length; i++) {
+    console.log(commentArray.length)
+    newComment.removeChild(newComment.lastChild)
+  }
 
   showNewComments()
 
   for (i = 0; i < newData[Btn].comments.length; i++){
-          newComment.insertAdjacentHTML("afterend", `<section class="add-comment">
+          newComment.insertAdjacentHTML("afterbegin", `<section class="comment-added">
                                              <h1>${newData[Btn].comments[i]}</h1>
                                              </section>` )
-//   if (newComment.hasChildNodes()) {
-//     newComment.removeChild(newComment.childNodes);
-// }
   }
+
 }
 }
 
@@ -108,7 +111,7 @@ addComment.addEventListener("click", postComment)
 function postComment(e) {
 const posting = document.getElementById("commentTextbox").value
 const newComment = document.querySelector("#comment")
-newComment.insertAdjacentHTML("afterend", `<section class="add-comment">
+newComment.insertAdjacentHTML("afterbegin", `<section class="comment-added">
                                        <h1>${posting}</h1>
                                        </section>` )
   const options = {
@@ -160,6 +163,7 @@ function hideCommentSection() {
 }
 
 function showNewPost() {
+
   newPostSection.setAttribute('style', 'visibility: visible;')
 }
 
