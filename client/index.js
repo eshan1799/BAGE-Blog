@@ -183,7 +183,7 @@ function savePost(e){
     console.log(dropdown)
     newPostSection.setAttribute('style', 'visibility: hidden;')
 
-    const data = {title : `${title}`, text : `${text}`, tags : `${dropdown}`, comments : [ ] ,  emojis : { }, key : "" }
+    const data = {title : `${title}`, text : `${text}`, tags : `${dropdown}`, comments : [ ] ,  emojis : {smiley: 0, laugh: 0, sad: 0 }, key : "" }
 
     const options = {
         method: 'POST',

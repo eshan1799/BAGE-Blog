@@ -42,7 +42,7 @@
         "afhgdha 3"
       ],
       "emojis": {
-        "smiley": 0,
+        "smiley": 1,
         "laugh": 0,
         "sad": 0
       },
@@ -73,7 +73,11 @@
         "hello",
         "test"
       ],
-      "emojis": {},
+      "emojis": {
+        "laugh": 0,
+        "smiley": 0,
+        "sad": 0
+      },
       "key": ""
     },
     {
@@ -97,7 +101,11 @@
         "fheaha",
         "tjgththth"
       ],
-      "emojis": {},
+      "emojis": {
+        "laugh": 0,
+        "smiley": 0,
+        "sad": 0
+      },
       "key": ""
     },
     {
@@ -108,7 +116,11 @@
         "tere",
         "hello"
       ],
-      "emojis": {},
+      "emojis": {
+        "laugh": 0,
+        "smiley": 0,
+        "sad": 0
+      },
       "key": ""
     },
     {
@@ -119,7 +131,11 @@
         "wegewgw",
         "sdsds"
       ],
-      "emojis": {},
+      "emojis": {
+        "laugh": 1,
+        "smiley": 2,
+        "sad": 1
+      },
       "key": ""
     }
   ]
