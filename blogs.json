@@ -10,9 +10,9 @@
         "njsfbhahnpa 3"
       ],
       "emojis": {
-        "emoji 1": 0,
-        "emoji 2": 0,
-        "emoji 3": 0
+        "smiley": 0,
+        "laugh": 0,
+        "sad": 0
       },
       "key": 0
     },
@@ -25,6 +25,11 @@
         "organ 2",
         "wetrwetw 3"
       ],
+      "emojis": {
+        "smiley": 0,
+        "laugh": 0,
+        "sad": 0
+      },
       "key": 1
     },
     {
@@ -36,6 +41,11 @@
         "liver 2",
         "afhgdha 3"
       ],
+      "emojis": {
+        "smiley": 0,
+        "laugh": 0,
+        "sad": 0
+      },
       "key": 2
     },
     {
@@ -50,8 +60,8 @@
       ],
       "emojis": {
         "smiley": 0,
-        "emoji 2": 0,
-        "emoji 3": 0
+        "laugh": 0,
+        "sad": 0
       },
       "key": 3
     },
