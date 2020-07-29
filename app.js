@@ -56,13 +56,12 @@ app.get('/blogs/search', (req, res) => {
 });
 
 // Emoji counter
-app.patch('/blogs/:id/emojis', (req, res) => {
-  let emoji = req.body;
+app.get('/blogs/:id/emojis/:emoji', (req, res) => {
+  let emoji = req.params.emoji;
   blogID = req.params.id;
-  let counter = blogs.blogs[blogID].emojis.emoji;
-  counter ++;
+  blogs.blogs[blogID].emojis[emoji] += 1;
   writeBlog();
-  res.send(json.stringify(counter))
+  res.send(JSON.stringify(blogs.blogs[blogID].emojis[emoji]));
 });
 
 app.listen(process.env.PORT || 3000, () => console.log(`Express now departing!`));
