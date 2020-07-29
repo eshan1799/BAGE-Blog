@@ -64,7 +64,7 @@ footer {
   margin: 10%;
 
 }
-.add-comment {
+.add-comment, .comment-added {
   border-style: solid;
   border-width: thick;
   margin-top: 5%;
@@ -115,6 +115,14 @@ footer {
   display: inline-flex;
   margin-right: 5%;
 }
+
+.returnedGif img {
+  width: 100px;
+  height: 100px;
+  display: none;
+  margin: 10px 0px;
+}
+
 h4 {
   /* display: block; */
 
