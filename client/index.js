@@ -1,5 +1,3 @@
-// const fetch = require("node-fetch");
-
 let newPostSection;
 let addNew;
 let commentSection;
@@ -61,7 +59,7 @@ hideCommentSection()
 loadBlogs()
 
 function loadBlogs() {
-  fetch('http://localhost:3000/blogs')
+  fetch('https://vast-gorge-12456.herokuapp.com/blogs')
     .then(r => r.json())
     .then(drawBlogs)
     .catch(console.error())
@@ -79,7 +77,7 @@ function updateSearch(query) {
     query = query.substring(1);
     query = `%23${query}`;
   }
-  fetch(`http://localhost:3000/blogs/search?q=${query}`)
+  fetch(`https://vast-gorge-12456.herokuapp.com/blogs/search?q=${query}`)
     .then(r => r.json())
     .then(drawSearchBlogs)
     .catch(console.error())
@@ -124,7 +122,7 @@ function drawSearchBlogs(e) {
     let makePost = document.querySelectorAll('.post-made')
     makePost[0].style.marginTop = '29%';
     newPostSection.style.marginTop = '-50%';
-  } 
+  }
 
 //load all comments when pressed view comment
 commentBtn = document.querySelectorAll(".button");
@@ -245,7 +243,7 @@ if(commentBtn != null) {
 function loadComments (e) {
 
   uniqueBtn = e.target.id
-  fetch("http://localhost:3000/blogs")
+  fetch("https://vast-gorge-12456.herokuapp.com/blogs")
   .then(r => r.json())
   .then(drawComments(uniqueBtn))
   .catch(console.error())
@@ -284,7 +282,7 @@ newComment.insertAdjacentHTML("afterbegin", `<section class="comment-added">
       body: JSON.stringify(posting)
   };
 
-fetch(`http://localhost:3000/blogs/${uniqueBtn}/comments`, options)
+fetch(`https://vast-gorge-12456.herokuapp.com/blogs/${uniqueBtn}/comments`, options)
   .then(r => r.json())
   .then(loadComments(uniqueBtn))
   .catch(console.warn)
@@ -304,7 +302,7 @@ function sendEmojiData(e) {
     emojiSent = "sad"
   }
 
-  fetch(`http://localhost:3000/blogs/${idSent}/emojis/${emojiSent}`)
+  fetch(`https://vast-gorge-12456.herokuapp.com/blogs/${idSent}/emojis/${emojiSent}`)
     .then(r => r.json())
     .then(increaseEmojiCount)
     .catch(console.warn)
@@ -376,7 +374,7 @@ function savePost(e){
         body: JSON.stringify(data)
     };
 
-    fetch('http://localhost:3000/blogs/new', options)
+    fetch('https://vast-gorge-12456.herokuapp.com/blogs/new', options)
     .then(r => r.json())
     .catch(console.warn)
     deleteBlogs()
@@ -389,4 +387,3 @@ function savePost(e){
     let blog = document.querySelector('.blog-section')
     blog.scrollTop = 0;
   }
-
