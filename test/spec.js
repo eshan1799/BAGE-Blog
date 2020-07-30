@@ -57,6 +57,18 @@ describe('Routes', () => {
         });
     });
 
+    it("should create new blog", (done) => {
+      chai.request(app)
+        .post('/blogs/new')
+        .send({"blogs":{"title":"hello"}})
+        // .expect(200)        
+        .end((err, res) => {
+          // res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+
     it("should return comments", (done) => {
       chai.request(app)
         .get('/blogs/1/comments')
@@ -66,6 +78,16 @@ describe('Routes', () => {
           done();
         });
       });
+
+    it("should create new comment", (done) => {
+      chai.request(app)
+        .post('/blogs/1/comments')
+        .end((err, req) => {
+          req.body.should.be.a('object');
+          req.should.have.status(200);
+          done();
+        });
+    });
 
     it("should return search results", (done) => {
       chai.request(app)
