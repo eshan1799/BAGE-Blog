@@ -9,11 +9,11 @@
     <body>
       <header>
         <section class="sticky-section">
-          <img src="home_images/home.png" alt="home button"/>
+          <img onclick="sendToTop()" src="home_images/home.png" alt="home button"/>
         </section>
         <section class="sticky-section">
-          <form class="search" action="index.html" method="post">
-            <input type="search" name="" value="" placeholder="Search for Title">
+          <form id="searchForm" method="post">
+            <input id="searchBarText" type="search" oninput="updateSearch(this.value)" name="" value="" placeholder="Search for Title">
           </form>
         </section>
         <section class="sticky-section">
@@ -21,15 +21,9 @@
         </section>
       </header>
       <main>
-        <section class="tag-section">
-          <input type="radio" name="" value="">
-          <input type="radio" name="" value="">
-          <input type="radio" name="" value="">
-          <footer class="footer">There are currently x number of blog posts</footer>
-        </section>
         <article class="blog-section">
           <section class="new-post">
-            <form class="" action="index.html" method="post"/>
+            <form class="" action="index.html" method="post">
             <div class="title-box">
               <input type="text" id="title" name="title" placeholder="Enter your Title here" maxlength="35" size="39">
             </div>

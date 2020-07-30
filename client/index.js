@@ -30,11 +30,10 @@ newPostSection = document.querySelector('.new-post')
 newCommentSection = document.querySelector('.comment-section')
 
 addNew = document.querySelector('#addNew')
-if(addNew != null) {
-  addNew.addEventListener('click', showNewPost);
-}
 
-addGifForm = document.querySelector('#addGifForm')
+searchBarText = document.querySelector('#searchBarText')
+searchBarText.addEventListener('keypress', preventSubmit)
+
 gifSearchText = document.querySelector('#gifSearchText')
 
 gifyImage1 = document.querySelector('#gifImg1')
@@ -53,12 +52,11 @@ if(gifyImage3 != null) {
 }
 
 gifySearchButton = document.querySelector('#gifSearchButton')
-if(gifySearchButton != null) {
-  gifySearchButton.addEventListener("click", gifySearch);
-}
 
+gifySearchButton.addEventListener("click", gifySearch);
+addNew.addEventListener('click', showNewPost)
+hideNewPost()
 
-// hideNewPost()
 hideCommentSection()
 loadBlogs()
 
@@ -69,15 +67,91 @@ function loadBlogs() {
     .catch(console.error())
 }
 
+function preventSubmit(e) {
+    if (e.keyCode === 13 || e.which === 13) {
+        e.preventDefault();
+        return false;
+    }
+};
+
+function updateSearch(query) {
+  if(query.startsWith("#")) {
+    query = query.substring(1);
+    query = `%23${query}`;
+  };
+
+  fetch(`http://localhost:3000/blogs/search?q=${query}`)
+    .then(r => r.json())
+    .then(drawSearchBlogs)
+    .catch(console.error())
+}
+
+function drawSearchBlogs(e) {
+    deleteBlogs();
+    deleteBlogs();
+  for (i = 0; i < e.length; i++){
+    newPost.insertAdjacentHTML("afterbegin", `<section class="post-made">
+    <h1>${e[i].title}</h1>
+    <h4 id="h4Item">${e[i].text}<h4>
+    <p>${e[i].tags}</p>
+    <img src="${e[i].gif}" id="img${i}" />
+    <div>
+    <button type="submit" class="button" id="${i}">View Comments</button>
+    <label class="emoji-but">
+        <span id="${i}" class="emoji-info">&#128515;</span>
+        <p class="emoji-counter" id="react1-${i}">${e[i].emojis.smiley}</p>
+    </label>
+    <label class="emoji-but">
+        <span id="${i}" class="emoji-info">&#128514;</span>
+        <p class="emoji-counter" id="react2-${i}">${e[i].emojis.laugh}</p>
+    </label>
+    <label class="emoji-but">
+          <span id="${i}" class="emoji-info">&#128546;</span>
+          <p class="emoji-counter" id="react3-${i}">${e[i].emojis.sad}</p>
+    </label>
+    </div>
+    </section>`)
+
+  }
+  check1Array = document.querySelectorAll(`.emoji-info`)
+
+  for (i=0; i < check1Array.length; i++){
+    check1Array[i].addEventListener('click', sendEmojiData)
+    addComment = document.querySelector("#addCommentButton")
+    addComment.addEventListener("click", postComment)
+  }
+
+  if (newPostSection.style.visibility ='hidden;') {
+    let makePost = document.querySelectorAll('.post-made')
+    makePost[0].style.marginTop = '29%';
+    newPostSection.style.marginTop = '-50%';
+  } 
+
+//load all comments when pressed view comment
+commentBtn = document.querySelectorAll(".button");
+for (i = 0; i < commentBtn.length; i++){
+  commentBtn[i].addEventListener("click", loadComments)
+}};
+
+//load all comments when pressed view comment
+let commentBtn = document.querySelectorAll(".button");
+for (i = 0; i < commentBtn.length; i++){
+  commentBtn[i].addEventListener("click", loadComments)
+};
+
 function deleteBlogs() {
-  location.reload()
+  let postsMade = document.querySelector('#make-post')
+  let noOfPosts = document.querySelectorAll('.post-made')
+  for (i=0; i < noOfPosts.length; i++) {
+    postsMade.removeChild(postsMade.lastChild)
+  }
 }
 
 function gifySearch(e) {
   const gifyAPIKey = 'qpx6gNTGPO74C8mY6JCzKpMTCiGKxkjC'
-  const userSearch = gifSearchText.value;
+  const userGifSearch = gifSearchText.value;
 
-  fetch(`http://api.giphy.com/v1/gifs/search?q=${userSearch}&api_key=${gifyAPIKey}&limit=3`)
+  fetch(`http://api.giphy.com/v1/gifs/search?q=${userGifSearch}&api_key=${gifyAPIKey}&limit=3`)
     .then(r => r.json())
     .then(displayGify)
     .catch(console.warn);
@@ -117,28 +191,28 @@ function addGif3() {
 function drawBlogs(array) {
     newData = array.blogs
   for (i = 0; i < newData.length; i++){
-    if(newPost) {
-      newPost.insertAdjacentHTML("afterend", `<section class="post-made">
-                                            <h1>${newData[i].title}</h1>
-                                            <h4 id="h4Item">${newData[i].text}<h4>
-                                            <p>${newData[i].tags}</p>
-                                            <img src="${newData[i].gif}" id="img${i}" />
-                                            <button type="submit" class="button" id="${i}">View Comments</button>
-                                            <label class="emoji-but">
-                                                <span id="${i}" class="emoji-info">&#128515;</span>
-                                                <p id="react1-${i}">${newData[i].emojis.smiley}</p>
-                                            </label>
-                                            <label class="emoji-but">
-                                                <span id="${i}" class="emoji-info">&#128514;</span>
-                                                <p id="react2-${i}">${newData[i].emojis.laugh}</p>
-                                            </label>
-                                            <label class="emoji-but">
-                                                  <span id="${i}" class="emoji-info">&#128546;</span>
-                                                  <p id="react3-${i}">${newData[i].emojis.sad}</p>
-                                            </label>
-                                            <button type="button" id="emojiButton${i}">Send Emoji</button>
-                                            </section>`)
-    }  
+    newPost.insertAdjacentHTML("afterbegin", `<section class="post-made">
+    <h1>${newData[i].title}</h1>
+    <h4 id="h4Item">${newData[i].text}<h4>
+    <p>${newData[i].tags}</p>
+    <img src="${newData[i].gif}" id="img${i}" />
+    <div>
+    <button type="submit" class="button" id="${i}">View Comments</button>
+    <label class="emoji-but">
+        <span id="${i}" class="emoji-info">&#128515;</span>
+        <p class="emoji-counter" id="react1-${i}">${newData[i].emojis.smiley}</p>
+    </label>
+    <label class="emoji-but">
+        <span id="${i}" class="emoji-info">&#128514;</span>
+        <p class="emoji-counter" id="react2-${i}">${newData[i].emojis.laugh}</p>
+    </label>
+    <label class="emoji-but">
+          <span id="${i}" class="emoji-info">&#128546;</span>
+          <p class="emoji-counter" id="react3-${i}">${newData[i].emojis.sad}</p>
+    </label>
+    </div>
+    </section>`)
+
   }
   let  check1Array = document.querySelectorAll(`.emoji-info`)
   if(check1Array != null) {
@@ -152,6 +226,12 @@ function drawBlogs(array) {
   }
 
 
+if (newPostSection.style.visibility ='hidden;') {
+  let makePost = document.querySelectorAll('.post-made')
+  makePost[0].style.marginTop = '29%';
+  newPostSection.style.marginTop = '-50%';
+}
+
 //load all comments when pressed view comment
 let commentBtn = document.querySelectorAll(".button");
 // console.log(commentBtn)
@@ -159,6 +239,7 @@ if(commentBtn != null) {
   for (i = 0; i < commentBtn.length; i++){
     commentBtn[i].addEventListener("click", loadComments)
   }
+}
 }
 
 
@@ -186,13 +267,9 @@ function drawComments(Btn){
                                              <h1>${newData[Btn].comments[i]}</h1>
                                              </section>` )
   }
-
-}
 }
 
-//add new comment and post it
-
-
+//Add new comment and post it
 function postComment(e) {
 
 const posting = document.getElementById("commentTextbox").value
@@ -214,9 +291,6 @@ fetch(`http://localhost:3000/blogs/${uniqueBtn}/comments`, options)
   .catch(console.warn)
 
 }
-
-
-
 
 function sendEmojiData(e) {
   emojiSent = e.target.innerText
@@ -264,8 +338,13 @@ function hideCommentSection() {
 }
 
 function showNewPost() {
-  if(newPostSection) {
-    newPostSection.setAttribute('style', 'visibility: visible;');
+  if(newPostSection.style.visibility == "hidden") {
+    newPostSection.setAttribute('style', 'visibility: visible;')
+  } else {
+    newPostSection.setAttribute('style', 'visibility: hidden;')
+    deleteBlogs()
+    deleteBlogs()
+    loadBlogs()
   }
 }
 
@@ -302,10 +381,13 @@ function savePost(e){
     .then(r => r.json())
     .catch(console.warn)
     deleteBlogs()
+
+    deleteBlogs()
+    loadBlogs()
+}
+
+  function sendToTop() {
+    let blog = document.querySelector('.blog-section')
+    blog.scrollTop = 0;
   }
 
-  module.exports.index = index;
-
-  var index = function(req,res) {
-    res.render('index');
-  }

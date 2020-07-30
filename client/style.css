@@ -11,13 +11,21 @@ body {
   height: 100vh;
 }
 
-main, header {
+header {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   justify-content: center;
   background-color: white;
   text-align: center;
 }
+
+main {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  justify-content: center;
+  background-color: white;
+  text-align: center;
+};
 
 .tag-section, article, aside {
   border-style: solid;
@@ -123,7 +131,17 @@ footer {
   margin: 10px 0px;
 }
 
-/* h4 {
-  display: block;
-
-}; */
+button, .emoji-but {
+  margin: 5%;
+}
+.emoji-info {
+  margin:-2%;
+  font-size: 24px;
+}
+.emoji-counter {
+  font-size: 24px;
+  color: blue !important;
+}
+#make-post {
+  color: black;
+}
