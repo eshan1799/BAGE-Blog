@@ -49,7 +49,6 @@ app.post('/blogs/:id/comments', (req, res) => {
 app.get('/blogs/search', (req, res) => {
   let searchTerm = req.query.q.toLowerCase();
   let results = blogSearch(searchTerm);
-
   results.length > 0
     ? res.send(JSON.stringify(results))
     : res.send(`"${searchTerm}" did not return any results!`);

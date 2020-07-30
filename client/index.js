@@ -25,7 +25,11 @@ const newPost = document.querySelector("#make-post");
 newPostSection = document.querySelector('.new-post')
 newCommentSection = document.querySelector('.comment-section')
 addNew = document.querySelector('#addNew')
-addGifForm = document.querySelector('#addGifForm')
+// searchForm = document.querySelector('#searchForm')
+// searchForm.addEventListener('submit', e = () => e.preventDefault())
+// searchBarText = document.querySelector('#searchBarText')
+// searchBarText.addEventListener('change', updateSearch)
+// addGifForm = document.querySelector('#addGifForm')
 gifSearchText = document.querySelector('#gifSearchText')
 gifyImage1 = document.querySelector('#gifImg1')
 gifyImage1.addEventListener('click', addGif1)
@@ -47,15 +51,32 @@ function loadBlogs() {
     .catch(console.error())
 }
 
+function updateSearch(query) {
+  // query = JSON.stringify(query)
+  console.log(query);
+  console.log(`http://localhost:3000/blogs/search?q=${query}`)
+  fetch(`http://localhost:3000/blogs/search?q=${query}`)
+    .then(r => r.json())
+    .then(data => {
+      // Work with JSON data here
+      console.log(data)})
+    // .then(drawSearchBlogs)
+    .catch(console.error())
+}
+
+function drawSearchBlogs() {
+  // newData = "";
+};
+
 function deleteBlogs() {
   location.reload()
 }
 
 function gifySearch(e) {
   const gifyAPIKey = 'qpx6gNTGPO74C8mY6JCzKpMTCiGKxkjC'
-  const userSearch = gifSearchText.value;
+  const userGifSearch = gifSearchText.value;
 
-  fetch(`http://api.giphy.com/v1/gifs/search?q=${userSearch}&api_key=${gifyAPIKey}&limit=3`)
+  fetch(`http://api.giphy.com/v1/gifs/search?q=${userGifSearch}&api_key=${gifyAPIKey}&limit=3`)
     .then(r => r.json())
     .then(displayGify)
     .catch(console.warn);
@@ -155,9 +176,7 @@ function drawComments(Btn){
 }
 }
 
-//add new comment and post it
-
-
+//Add new comment and post it
 function postComment(e) {
 
 const posting = document.getElementById("commentTextbox").value
@@ -179,9 +198,6 @@ fetch(`http://localhost:3000/blogs/${uniqueBtn}/comments`, options)
   .catch(console.warn)
 
 }
-
-
-
 
 function sendEmojiData(e) {
   emojiSent = e.target.innerText
