@@ -67,7 +67,7 @@ app.listen(process.env.PORT || 3000, () => console.log(`Express now departing!`)
 
 // Blog search function
 const blogSearch = (searchTerm) => {
-  if(searchTerm.startsWith("#")) {
+  if(searchTerm.startsWith("%23")) {
     return blogs.blogs.filter(
     (blog) =>
       blog.tags.includes(searchTerm));

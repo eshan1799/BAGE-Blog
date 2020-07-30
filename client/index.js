@@ -25,11 +25,8 @@ const newPost = document.querySelector("#make-post");
 newPostSection = document.querySelector('.new-post')
 newCommentSection = document.querySelector('.comment-section')
 addNew = document.querySelector('#addNew')
-// searchForm = document.querySelector('#searchForm')
-// searchForm.addEventListener('submit', e = () => e.preventDefault())
-// searchBarText = document.querySelector('#searchBarText')
-// searchBarText.addEventListener('change', updateSearch)
-// addGifForm = document.querySelector('#addGifForm')
+searchBarText = document.querySelector('#searchBarText')
+searchBarText.addEventListener('keypress', preventSubmit)
 gifSearchText = document.querySelector('#gifSearchText')
 gifyImage1 = document.querySelector('#gifImg1')
 gifyImage1.addEventListener('click', addGif1)
@@ -40,7 +37,7 @@ gifyImage3.addEventListener('click', addGif3)
 gifySearchButton = document.querySelector('#gifSearchButton')
 gifySearchButton.addEventListener("click", gifySearch);
 addNew.addEventListener('click', showNewPost)
-// hideNewPost()
+hideNewPost()
 hideCommentSection()
 loadBlogs()
 
@@ -51,25 +48,86 @@ function loadBlogs() {
     .catch(console.error())
 }
 
+function preventSubmit(e) {
+    if (e.keyCode === 13 || e.which === 13) {
+        e.preventDefault();
+        return false;
+    }
+};
+
 function updateSearch(query) {
-  // query = JSON.stringify(query)
-  console.log(query);
-  console.log(`http://localhost:3000/blogs/search?q=${query}`)
+  if(query.startsWith("#")) {
+    query = query.substring(1);
+    query = `%23${query}`;
+    console.log(query);
+  };
+
   fetch(`http://localhost:3000/blogs/search?q=${query}`)
     .then(r => r.json())
-    .then(data => {
-      // Work with JSON data here
-      console.log(data)})
-    // .then(drawSearchBlogs)
+    .then(drawSearchBlogs)
     .catch(console.error())
 }
 
-function drawSearchBlogs() {
-  // newData = "";
+function drawSearchBlogs(e) {
+    deleteBlogs();
+    deleteBlogs();
+  for (i = 0; i < e.length; i++){
+    newPost.insertAdjacentHTML("afterbegin", `<section class="post-made">
+    <h1>${e[i].title}</h1>
+    <h4 id="h4Item">${e[i].text}<h4>
+    <p>${e[i].tags}</p>
+    <img src="${e[i].gif}" id="img${i}" />
+    <div>
+    <button type="submit" class="button" id="${i}">View Comments</button>
+    <label class="emoji-but">
+        <span id="${i}" class="emoji-info">&#128515;</span>
+        <p class="emoji-counter" id="react1-${i}">${e[i].emojis.smiley}</p>
+    </label>
+    <label class="emoji-but">
+        <span id="${i}" class="emoji-info">&#128514;</span>
+        <p class="emoji-counter" id="react2-${i}">${e[i].emojis.laugh}</p>
+    </label>
+    <label class="emoji-but">
+          <span id="${i}" class="emoji-info">&#128546;</span>
+          <p class="emoji-counter" id="react3-${i}">${e[i].emojis.sad}</p>
+    </label>
+    </div>
+    </section>`)
+
+  }
+  check1Array = document.querySelectorAll(`.emoji-info`)
+
+  for (i=0; i < check1Array.length; i++){
+    check1Array[i].addEventListener('click', sendEmojiData)
+    addComment = document.querySelector("#addCommentButton")
+    addComment.addEventListener("click", postComment)
+  }
+
+  if (newPostSection.style.visibility ='hidden;') {
+    let makePost = document.querySelectorAll('.post-made')
+    makePost[0].style.marginTop = '29%';
+    newPostSection.style.marginTop = '-50%';
+  } 
+
+//load all comments when pressed view comment
+commentBtn = document.querySelectorAll(".button");
+console.log(commentBtn)
+for (i = 0; i < commentBtn.length; i++){
+  commentBtn[i].addEventListener("click", loadComments)
+}};
+
+//load all comments when pressed view comment
+let commentBtn = document.querySelectorAll(".button");
+for (i = 0; i < commentBtn.length; i++){
+  commentBtn[i].addEventListener("click", loadComments)
 };
 
 function deleteBlogs() {
-  location.reload()
+  let postsMade = document.querySelector('#make-post')
+  let noOfPosts = document.querySelectorAll('.post-made')
+  for (i=0; i < noOfPosts.length; i++) {
+    postsMade.removeChild(postsMade.lastChild)
+  }
 }
 
 function gifySearch(e) {
@@ -111,26 +169,27 @@ function addGif3() {
 function drawBlogs(array) {
     newData = array.blogs
   for (i = 0; i < newData.length; i++){
-    newPost.insertAdjacentHTML("afterend", `<section class="post-made">
-                                          <h1>${newData[i].title}</h1>
-                                          <h4 id="h4Item">${newData[i].text}<h4>
-                                          <p>${newData[i].tags}</p>
-                                          <img src="${newData[i].gif}" id="img${i}" />
-                                          <button type="submit" class="button" id="${i}">View Comments</button>
-                                          <label class="emoji-but">
-                                              <span id="${i}" class="emoji-info">&#128515;</span>
-                                              <p id="react1-${i}">${newData[i].emojis.smiley}</p>
-                                          </label>
-                                          <label class="emoji-but">
-                                              <span id="${i}" class="emoji-info">&#128514;</span>
-                                              <p id="react2-${i}">${newData[i].emojis.laugh}</p>
-                                          </label>
-                                          <label class="emoji-but">
-                                                <span id="${i}" class="emoji-info">&#128546;</span>
-                                                <p id="react3-${i}">${newData[i].emojis.sad}</p>
-                                          </label>
-                                          <button type="button" id="emojiButton${i}">Send Emoji</button>
-                                          </section>`)
+    newPost.insertAdjacentHTML("afterbegin", `<section class="post-made">
+    <h1>${newData[i].title}</h1>
+    <h4 id="h4Item">${newData[i].text}<h4>
+    <p>${newData[i].tags}</p>
+    <img src="${newData[i].gif}" id="img${i}" />
+    <div>
+    <button type="submit" class="button" id="${i}">View Comments</button>
+    <label class="emoji-but">
+        <span id="${i}" class="emoji-info">&#128515;</span>
+        <p class="emoji-counter" id="react1-${i}">${newData[i].emojis.smiley}</p>
+    </label>
+    <label class="emoji-but">
+        <span id="${i}" class="emoji-info">&#128514;</span>
+        <p class="emoji-counter" id="react2-${i}">${newData[i].emojis.laugh}</p>
+    </label>
+    <label class="emoji-but">
+          <span id="${i}" class="emoji-info">&#128546;</span>
+          <p class="emoji-counter" id="react3-${i}">${newData[i].emojis.sad}</p>
+    </label>
+    </div>
+    </section>`)
 
   }
   let  check1Array = document.querySelectorAll(`.emoji-info`)
@@ -141,11 +200,18 @@ function drawBlogs(array) {
     addComment.addEventListener("click", postComment)
 }
 
+if (newPostSection.style.visibility ='hidden;') {
+  let makePost = document.querySelectorAll('.post-made')
+  makePost[0].style.marginTop = '29%';
+  newPostSection.style.marginTop = '-50%';
+}
+
 //load all comments when pressed view comment
 let commentBtn = document.querySelectorAll(".button");
 // console.log(commentBtn)
 for (i = 0; i < commentBtn.length; i++){
   commentBtn[i].addEventListener("click", loadComments)
+}
 }
 
 function loadComments (e) {
@@ -172,8 +238,6 @@ function drawComments(Btn){
                                              <h1>${newData[Btn].comments[i]}</h1>
                                              </section>` )
   }
-
-}
 }
 
 //Add new comment and post it
@@ -241,8 +305,14 @@ function hideCommentSection() {
 }
 
 function showNewPost() {
-
-  newPostSection.setAttribute('style', 'visibility: visible;')
+  if(newPostSection.style.visibility == "hidden") {
+    newPostSection.setAttribute('style', 'visibility: visible;')
+  } else {
+    newPostSection.setAttribute('style', 'visibility: hidden;')
+    deleteBlogs()
+    deleteBlogs()
+    loadBlogs()
+  }
 }
 
 function showNewComments() {
@@ -273,4 +343,11 @@ function savePost(e){
     .then(r => r.json())
     .catch(console.warn)
     deleteBlogs()
+    deleteBlogs()
+    loadBlogs()
+}
+
+  function sendToTop() {
+    let blog = document.querySelector('.blog-section')
+    blog.scrollTop = 0;
   }
