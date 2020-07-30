@@ -59,7 +59,6 @@ function updateSearch(query) {
   if(query.startsWith("#")) {
     query = query.substring(1);
     query = `%23${query}`;
-    console.log(query);
   };
 
   fetch(`http://localhost:3000/blogs/search?q=${query}`)
@@ -111,7 +110,6 @@ function drawSearchBlogs(e) {
 
 //load all comments when pressed view comment
 commentBtn = document.querySelectorAll(".button");
-console.log(commentBtn)
 for (i = 0; i < commentBtn.length; i++){
   commentBtn[i].addEventListener("click", loadComments)
 }};
