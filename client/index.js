@@ -242,8 +242,13 @@ if(commentBtn != null) {
 
 
 function loadComments (e) {
-
-  uniqueBtn = e.target.id
+  let postMade = document.querySelectorAll('.post-made')
+  for (i=0; i < postMade.length; i++ ) {
+  postMade[i].style.borderColor = "black";
+  }
+  uniqueBtn = (postMade.length - e.target.id) - 1
+  console.log(postMade[uniqueBtn].style.borderColor)
+  postMade[uniqueBtn].style.borderColor = "blue" ;
   fetch("https://vast-gorge-12456.herokuapp.com/blogs")
   .then(r => r.json())
   .then(drawComments(uniqueBtn))

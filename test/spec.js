@@ -12,26 +12,26 @@ const sinonChai = require('sinon-chai');
 require('jsdom-global')();
 
 let app = rewire('../app.js');
-let index = rewire('../client/index.js');
+// let index = rewire('../client/index.js');
 
 chai.use(chaiHttp);
 chai.use(sinonChai);
 chai.should();
 
-let browser;
-let page;
-
-before(async () => {
-    try {
-        browser = await puppeteer.launch({headless: true});
-        page = await browser.newPage();
-        const html = fs.readFileSync('../client/index.html', {encoding: 'utf-8'});
-        await page.setContent(html)
-    } catch {
-
-    }
-
-});
+// let browser;
+// let page;
+//
+// before(async () => {
+//     try {
+//         browser = await puppeteer.launch({headless: true});
+//         page = await browser.newPage();
+//         const html = fs.readFileSync('../client/index.html', {encoding: 'utf-8'});
+//         await page.setContent(html)
+//     } catch {
+//
+//     }
+//
+// });
 
 describe('Routes', () => {
   describe('GET /', () => {
@@ -162,38 +162,38 @@ describe("Server Functions", () => {
   })
 });
 
-describe("Client Side", () => {
-
-  describe("Load Blogs", () => {
-    let loadBlogs = index.__get__('loadBlogs');
-      it('should exist', () => {
-        expect(loadBlogs).to.be.a('function');
-      });
-  });
-
-  describe("Refresh Blogs", () => {
-    let deleteBlogs = index.__get__('deleteBlogs');
-    it('should exist', () => {
-      expect(deleteBlogs).to.be.a('function');
-    });
-  });
-
-  describe('Giphy Functions', () => {
-    describe("Giphy Search", () => {
-      let gifySearch = index.__get__('gifySearch');
-      it('should exist', () => {
-        expect(gifySearch).to.be.a('function');
-      })
-    })
-
-    describe('Display Giphy Results', () => {
-      let displayGify = index.__get__('displayGify');
-      it('should exist', () => {
-        expect(displayGify).to.be.a('function');
-      })
-    })
-  })
-})
+// describe("Client Side", () => {
+//
+//   describe("Load Blogs", () => {
+//     let loadBlogs = index.__get__('loadBlogs');
+//       it('should exist', () => {
+//         expect(loadBlogs).to.be.a('function');
+//       });
+//   });
+//
+//   describe("Refresh Blogs", () => {
+//     let deleteBlogs = index.__get__('deleteBlogs');
+//     it('should exist', () => {
+//       expect(deleteBlogs).to.be.a('function');
+//     });
+//   });
+//
+//   describe('Giphy Functions', () => {
+//     describe("Giphy Search", () => {
+//       let gifySearch = index.__get__('gifySearch');
+//       it('should exist', () => {
+//         expect(gifySearch).to.be.a('function');
+//       })
+//     })
+//
+//     describe('Display Giphy Results', () => {
+//       let displayGify = index.__get__('displayGify');
+//       it('should exist', () => {
+//         expect(displayGify).to.be.a('function');
+//       })
+//     })
+//   })
+// })
 
   // describe('Blog Posting', () => {
   //   describe('Save New Post', () => {
