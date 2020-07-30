@@ -1,5 +1,3 @@
-const fetch = require("node-fetch");
-
 let newPostSection;
 let addNew;
 let commentSection;
@@ -125,7 +123,7 @@ function drawSearchBlogs(e) {
     let makePost = document.querySelectorAll('.post-made')
     makePost[0].style.marginTop = '29%';
     newPostSection.style.marginTop = '-50%';
-  } 
+  }
 
 //load all comments when pressed view comment
 commentBtn = document.querySelectorAll(".button");
@@ -390,4 +388,3 @@ function savePost(e){
     let blog = document.querySelector('.blog-section')
     blog.scrollTop = 0;
   }
-
