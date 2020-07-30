@@ -66,10 +66,9 @@ app.get('/blogs/:id/emojis/:emoji', (req, res) => {
 app.listen(process.env.PORT || 3000, () => console.log(`Express now departing!`));
 
 // Blog search function
-const blogSearch = (searchTerm) => {
-  if(searchTerm.startsWith("%23")) {
-    searchTerm = searchTerm.substring(3);
-    console.log(searchTerm);
+function blogSearch(searchTerm) {
+  if(searchTerm.startsWith("#")) {
+    searchTerm = searchTerm.substring(1);
     return blogs.blogs.filter(
     (blog) =>
       blog.tags.includes(searchTerm));
