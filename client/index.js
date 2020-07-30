@@ -59,8 +59,7 @@ function updateSearch(query) {
   if(query.startsWith("#")) {
     query = query.substring(1);
     query = `%23${query}`;
-  };
-
+  }
   fetch(`http://localhost:3000/blogs/search?q=${query}`)
     .then(r => r.json())
     .then(drawSearchBlogs)
@@ -74,7 +73,7 @@ function drawSearchBlogs(e) {
     newPost.insertAdjacentHTML("afterbegin", `<section class="post-made">
     <h1>${e[i].title}</h1>
     <h4 id="h4Item">${e[i].text}<h4>
-    <p>${e[i].tags}</p>
+    <p>#${e[i].tags}</p>
     <img src="${e[i].gif}" id="img${i}" />
     <div>
     <button type="submit" class="button" id="${i}">View Comments</button>
@@ -170,7 +169,7 @@ function drawBlogs(array) {
     newPost.insertAdjacentHTML("afterbegin", `<section class="post-made">
     <h1>${newData[i].title}</h1>
     <h4 id="h4Item">${newData[i].text}<h4>
-    <p>${newData[i].tags}</p>
+    <p>#${newData[i].tags}</p>
     <img src="${newData[i].gif}" id="img${i}" />
     <div>
     <button type="submit" class="button" id="${i}">View Comments</button>
