@@ -79,16 +79,6 @@ describe('Routes', () => {
         });
       });
 
-    it("should create new comment", (done) => {
-      chai.request(app)
-        .post('/blogs/1/comments')
-        .end((err, req) => {
-          req.body.should.be.a('object');
-          req.should.have.status(200);
-          done();
-        });
-    });
-
     it("should return search results", (done) => {
       chai.request(app)
       .get('/blogs/search?q=technology')
