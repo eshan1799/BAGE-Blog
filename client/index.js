@@ -1,8 +1,13 @@
+const fetch = require("node-fetch");
+
 let newPostSection;
 let addNew;
 let commentSection;
 const blogPost = document.querySelector("#submit")
-blogPost.addEventListener("click", savePost)
+if(blogPost != null) {
+  blogPost.addEventListener("click", savePost);
+}
+
 let title;
 let text;
 let dropdown;
@@ -18,26 +23,40 @@ let emojiSent;
 let idSent;
 let gifyURL;
 
-
 newComment = document.getElementById("comment")
 emojiCheck = document.querySelector("#emojiSelect")
 const newPost = document.querySelector("#make-post");
 newPostSection = document.querySelector('.new-post')
 newCommentSection = document.querySelector('.comment-section')
+
 addNew = document.querySelector('#addNew')
+
 searchBarText = document.querySelector('#searchBarText')
 searchBarText.addEventListener('keypress', preventSubmit)
+
 gifSearchText = document.querySelector('#gifSearchText')
+
 gifyImage1 = document.querySelector('#gifImg1')
-gifyImage1.addEventListener('click', addGif1)
+if(gifyImage1 != null) {
+  gifyImage1.addEventListener('click', addGif1)
+}
+
 gifyImage2 = document.querySelector('#gifImg2')
-gifyImage2.addEventListener('click', addGif2)
+if(gifyImage2 != null) {
+  gifyImage2.addEventListener('click', addGif2)
+}
+
 gifyImage3 = document.querySelector('#gifImg3')
-gifyImage3.addEventListener('click', addGif3)
+if(gifyImage3 != null) {
+  gifyImage3.addEventListener('click', addGif3)
+}
+
 gifySearchButton = document.querySelector('#gifSearchButton')
+
 gifySearchButton.addEventListener("click", gifySearch);
 addNew.addEventListener('click', showNewPost)
 hideNewPost()
+
 hideCommentSection()
 loadBlogs()
 
@@ -139,13 +158,18 @@ function gifySearch(e) {
 
 function displayGify(e) {
   const dataImage = [];
-
-  gifyImage1.setAttribute("src", e.data[0].images.original.url);
-  gifyImage1.setAttribute("style", "display: inline;")
-  gifyImage2.setAttribute("src", e.data[1].images.original.url);
-  gifyImage2.setAttribute("style", "display: inline;")
-  gifyImage3.setAttribute("src", e.data[2].images.original.url);
-  gifyImage3.setAttribute("style", "display: inline;")
+  if(gifyImage1) {
+    gifyImage1.setAttribute("src", e.data[0].images.original.url);
+    gifyImage1.setAttribute("style", "display: inline;")
+  }
+  if(gifyImage2) {
+    gifyImage2.setAttribute("src", e.data[1].images.original.url);
+    gifyImage2.setAttribute("style", "display: inline;")
+  }
+  if(gifyImage3) {
+    gifyImage3.setAttribute("src", e.data[2].images.original.url);
+    gifyImage3.setAttribute("style", "display: inline;")
+  }
 };
 
 function addGif1() {
@@ -190,12 +214,16 @@ function drawBlogs(array) {
 
   }
   let  check1Array = document.querySelectorAll(`.emoji-info`)
+  if(check1Array != null) {
+    for (i=0; i < check1Array.length; i++){
+      check1Array[i].addEventListener('click', sendEmojiData)
+      const addComment = document.querySelector("#addCommentButton")
+      if(addComment != null) {
+        addComment.addEventListener("click", postComment)
+      }
+    }
+  }
 
-  for (i=0; i < check1Array.length; i++){
-    check1Array[i].addEventListener('click', sendEmojiData)
-    const addComment = document.querySelector("#addCommentButton")
-    addComment.addEventListener("click", postComment)
-}
 
 if (newPostSection.style.visibility ='hidden;') {
   let makePost = document.querySelectorAll('.post-made')
@@ -206,10 +234,13 @@ if (newPostSection.style.visibility ='hidden;') {
 //load all comments when pressed view comment
 let commentBtn = document.querySelectorAll(".button");
 // console.log(commentBtn)
-for (i = 0; i < commentBtn.length; i++){
-  commentBtn[i].addEventListener("click", loadComments)
+if(commentBtn != null) {
+  for (i = 0; i < commentBtn.length; i++){
+    commentBtn[i].addEventListener("click", loadComments)
+  }
 }
 }
+
 
 function loadComments (e) {
 
@@ -294,11 +325,15 @@ function increaseEmojiCount(data) {
 
 
 function hideNewPost() {
-  newPostSection.setAttribute('style', 'visibility: hidden;')
+  if(newPostSection) {
+      newPostSection.setAttribute('style', 'visibility: hidden;');
+  }
 }
 
 function hideCommentSection() {
-  newCommentSection.setAttribute('style', 'visibility: hidden;')
+  if(newCommentSection) {
+    newCommentSection.setAttribute('style', 'visibility: hidden;');
+  }
 }
 
 function showNewPost() {
@@ -313,7 +348,9 @@ function showNewPost() {
 }
 
 function showNewComments() {
-  newCommentSection.setAttribute('style', 'visibility: visible;')
+  if(newCommentSection) {
+    newCommentSection.setAttribute('style', 'visibility: visible;');
+  }
 }
 
 function savePost(e){
@@ -324,7 +361,10 @@ function savePost(e){
     console.log(text)
     dropdown = document.getElementById("category").value;
     console.log(dropdown)
-    newPostSection.setAttribute('style', 'visibility: hidden;')
+    if(newPostSection) {
+      newPostSection.setAttribute('style', 'visibility: hidden;');
+    }
+
 
     const data = {title : `${title}`, text : `${text}`, tags : `${dropdown}`, comments : [ ] ,  emojis : {smiley: 0, laugh: 0, sad: 0 }, gif: `${gifyURL}`, key : "" }
 
@@ -340,6 +380,7 @@ function savePost(e){
     .then(r => r.json())
     .catch(console.warn)
     deleteBlogs()
+
     deleteBlogs()
     loadBlogs()
 }
@@ -348,3 +389,4 @@ function savePost(e){
     let blog = document.querySelector('.blog-section')
     blog.scrollTop = 0;
   }
+
