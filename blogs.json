@@ -10,7 +10,7 @@
         "njsfbhahnpa 3"
       ],
       "emojis": {
-        "smiley": 0,
+        "smiley": 67,
         "laugh": 0,
         "sad": 0
       },
@@ -143,6 +143,19 @@
         "sad": 2
       },
       "gif": "",
+      "key": ""
+    },
+    {
+      "title": "Student",
+      "text": "Albie",
+      "tags": "medical",
+      "comments": [],
+      "emojis": {
+        "smiley": 5,
+        "laugh": 6,
+        "sad": 7
+      },
+      "gif": "https://media1.giphy.com/media/WXB88TeARFVvi/giphy.gif?cid=db6e5c82ek461y3iwbfhyknp3r7itgikipbzciup23gcse9i&rid=giphy.gif",
       "key": ""
     }
   ]
