@@ -34,7 +34,7 @@ Bhuma, Albie, Geroge and Eshan's simple blog
 - Eshan: None
 - George: Inexperience with a project like this
 
-#### Tuesday
+### Tuesday
 
 **Aims**
 - Connect HTML, CSS and JS to make sure layout is matches wireframe.
@@ -46,7 +46,8 @@ Bhuma, Albie, Geroge and Eshan's simple blog
 - Bhuma: Posting positioning
 - Eshan: None
 - George: None
-#### Wednesday
+
+### Wednesday
 
 **Aims**
 - Implement Giphy search feature
@@ -58,7 +59,8 @@ Bhuma, Albie, Geroge and Eshan's simple blog
 - Bhuma: None
 - Eshan: None
 - George: None
-#### Thursday
+
+### Thursday
 
 **Aims**
 - Deploy to Heroku
@@ -70,6 +72,7 @@ Bhuma, Albie, Geroge and Eshan's simple blog
 - Bhuma: None
 - Eshan: None
 - George: Hayfever flaring up
+
 ###Friday
 
 **Aims**
