@@ -172,17 +172,14 @@ function displayGify(e) {
 
 function addGif1() {
   gifyURL = gifyImage1.src
-  console.log(gifyURL)
 }
 
 function addGif2() {
   gifyURL = gifyImage2.src
-  console.log(gifyURL)
 }
 
 function addGif3() {
   gifyURL = gifyImage3.src
-  console.log(gifyURL)
 }
 
 function drawBlogs(array) {

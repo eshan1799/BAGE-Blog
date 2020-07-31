@@ -68,6 +68,10 @@ footer {
 
 .sticky-section #searchBarText:focus {outline: none; }
 
+#addNew {
+  font-size: 40px;
+}
+
 .blog-section section {
   display: flex;
   flex-direction: column;
@@ -162,4 +166,5 @@ button, .emoji-but {
 
 .img-hover:hover, button, .submit {
   cursor: pointer;
+  opacity: 0.6;
 }
