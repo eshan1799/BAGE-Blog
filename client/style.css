@@ -164,7 +164,7 @@ button, .emoji-but {
   font-size: 24px;
 }
 .emoji-counter {
-  font-size: 15px;
+  font-size: 12px;
   color: #5f5f61 !important;
 }
 #make-post {
@@ -203,7 +203,13 @@ button, .emoji-but {
 
 }
 
+.tags-commentBtn #tagP {
+  justify-content: right;
+}
+
 #h4Item {
+  margin: 10px 20px; 
+  /* margin-left: 10px; */
   text-align: left;
 }
 
@@ -212,6 +218,7 @@ button, .emoji-but {
 }
 
 .button, .submit {
+  font-size: 5px;
   background-color: #f4f4f4;
   border: solid;
   border-width: 1px;
