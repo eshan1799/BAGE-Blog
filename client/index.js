@@ -183,14 +183,23 @@ function displayGify(e) {
 };
 
 function addGif1() {
+  gifyImage1.style.opacity = '0.6';
+  gifyImage2.style.opacity = '1';
+  gifyImage3.style.opacity = '1';
   gifyURL = gifyImage1.src
 }
 
 function addGif2() {
+  gifyImage1.style.opacity = '1';
+  gifyImage2.style.opacity = '0.6';
+  gifyImage3.style.opacity = '1';
   gifyURL = gifyImage2.src
 }
 
 function addGif3() {
+  gifyImage1.style.opacity = '1';
+  gifyImage2.style.opacity = '1';
+  gifyImage3.style.opacity = '0.6';
   gifyURL = gifyImage3.src
 }
 
