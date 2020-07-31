@@ -89,11 +89,10 @@ function drawSearchBlogs(e) {
   for (i = 0; i < e.length; i++){
     newPost.insertAdjacentHTML("afterbegin", `<section class="post-made">
     <h1>${e[i].title}</h1>
-    <h4 id="h4Item">${e[i].text}<h4>
-    <p>#${e[i].tags}</p>
-    <img src="${e[i].gif}" id="img${i}" />
-    <div class="divButtons">
-    <button type="submit" class="button" id="button${i}">View Comments</button>
+
+    <div class = "all-container">
+    <div class="grid-container"> 
+    
     <label class="emoji-but">
         <span id="${i}" class="emoji-info">&#128515;</span>
         <p class="emoji-counter" id="react1-${i}">${e[i].emojis.smiley}</p>
@@ -107,6 +106,19 @@ function drawSearchBlogs(e) {
           <p class="emoji-counter" id="react3-${i}">${e[i].emojis.sad}</p>
     </label>
     </div>
+
+    <div class = "text-container">
+    <h4 id="h4Item">${e[i].text}<h4>
+    <img src="${e[i].gif}" id="img${i}" />
+    </div>
+    </div>
+    <div class= "tags-commentBtn">
+    <p>#${e[i].tags}</p>
+    <div class="divButtons">
+    <button type="submit" class="button" id="button${i}">View Comments</button>
+    </div>
+    </div>
+
     </section>`)
 
   }
