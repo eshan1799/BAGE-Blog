@@ -148,7 +148,7 @@ function gifySearch(e) {
   const gifyAPIKey = 'qpx6gNTGPO74C8mY6JCzKpMTCiGKxkjC'
   const userGifSearch = gifSearchText.value;
 
-  fetch(`http://api.giphy.com/v1/gifs/search?q=${userGifSearch}&api_key=${gifyAPIKey}&limit=3`)
+  fetch(`https://api.giphy.com/v1/gifs/search?q=${userGifSearch}&api_key=${gifyAPIKey}&limit=3`)
     .then(r => r.json())
     .then(displayGify)
     .catch(console.warn);
@@ -187,11 +187,11 @@ function drawBlogs(array) {
   for (i = 0; i < newData.length; i++){
     newPost.insertAdjacentHTML("afterbegin", `<section class="post-made">
     <h1>${newData[i].title}</h1>
-    <h4 id="h4Item">${newData[i].text}<h4>
-    <p>#${newData[i].tags}</p>
-    <img src="${newData[i].gif}" id="img${i}" />
-    <div>
-    <button type="submit" class="button" id="button${i}">View Comments</button>
+
+
+    <div class = "all-container">
+    <div class="grid-container"> 
+
     <label class="emoji-but">
         <span id="${i}" class="emoji-info">&#128515;</span>
         <p class="emoji-counter" id="react1-${i}">${newData[i].emojis.smiley}</p>
@@ -204,6 +204,15 @@ function drawBlogs(array) {
           <span id="${i}" class="emoji-info">&#128546;</span>
           <p class="emoji-counter" id="react3-${i}">${newData[i].emojis.sad}</p>
     </label>
+    </div>
+    <div class = "text-container">
+    <h4 id="h4Item">${newData[i].text}<h4>
+    <img src="${newData[i].gif}" id="img${i}" />
+    </div>
+    </div>
+    <div class= "tags-commentBtn">
+    <p>#${newData[i].tags}</p>
+    <button type="submit" class="button" id="${i}">View Comments</button>
     </div>
     </section>`)
 
@@ -238,8 +247,13 @@ if(commentBtn != null) {
 
 
 function loadComments (e) {
-
-  uniqueBtn = e.target.id
+  let postMade = document.querySelectorAll('.post-made')
+  for (i=0; i < postMade.length; i++ ) {
+  postMade[i].style.borderColor = "grey";
+  }
+  uniqueBtn = (postMade.length - e.target.id) - 1
+  console.log(postMade[uniqueBtn].style.borderColor)
+  postMade[uniqueBtn].style.borderWidth = "thick" ;
   fetch("https://vast-gorge-12456.herokuapp.com/blogs")
   .then(r => r.json())
   .then(drawComments(uniqueBtn))
@@ -247,18 +261,21 @@ function loadComments (e) {
 
 }
 
-function drawComments(Btn){
+function deleteComments() {
   let commentArray = document.querySelectorAll('.comment-added')
-  console.log(Btn)
-  for (i=0; i < commentArray.length; i++) {
+  for (i=1; i < commentArray.length + 1; i++) {
     newComment.removeChild(newComment.lastChild)
   }
-
+}
+function drawComments(Btn){
+  deleteComments()
+  deleteComments()
+  let postMade = document.querySelectorAll('.post-made')
+    uniqueBtn = (postMade.length - Btn) - 1
   showNewComments()
-
-  for (i = 0; i < newData[Btn].comments.length; i++){
+  for (i = 0; i < newData[uniqueBtn].comments.length; i++){
           newComment.insertAdjacentHTML("afterbegin", `<section class="comment-added">
-                                             <h1>${newData[Btn].comments[i]}</h1>
+                                             <h1>${newData[uniqueBtn].comments[i]}</h1>
                                              </section>` )
   }
 }
@@ -360,6 +377,7 @@ function savePost(e){
       newPostSection.setAttribute('style', 'visibility: hidden;');
     }
 
+    gifyURL != undefined ? gifyURL = gifyURL : gifyURL = "";
 
     const data = {title : `${title}`, text : `${text}`, tags : `${dropdown}`, comments : [ ] ,  emojis : {smiley: 0, laugh: 0, sad: 0 }, gif: `${gifyURL}`, key : "" }
 

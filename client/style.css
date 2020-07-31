@@ -9,6 +9,7 @@ body {
   grid-template-rows:  50px 1fr;
   width: 100vw;
   height: 100vh;
+  font-family: 'Catamaran';
 }
 
 header {
@@ -77,7 +78,9 @@ footer {
   margin-left: 15%;
   margin-right: 15%;
   border-style: solid;
-  border-width: thick;
+  border-width: thin;
+  border-color: grey;
+  border-radius: 3%;
 }
 .title-box, .main-box, .tag-and-submit {
   margin: 10px;
@@ -90,13 +93,19 @@ footer {
 }
 .add-comment, .comment-added {
   border-style: solid;
-  border-width: thick;
+  border-color: grey;
+  border-width: thin;
   margin-top: 5%;
 }
 .post-made {
   display: flex;
   flex-direction: column;
   background-color: #ffdee3;
+}
+
+.comment {
+  background-color: #ffdee3;
+
 }
 .post-made * {
   margin-top: 2%;
@@ -165,6 +174,41 @@ button, .emoji-but {
 .img-hover:hover, button, .submit {
   cursor: pointer;
   opacity: 0.6;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 50px;
+  grid-template-rows: auto auto auto;
+  position: relative;
+}
+
+.all-container {
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: auto;
+
+}
+
+.button {
+  margin-left: 55%;
+  width: 25%;
+}
+
+.tags-commentBtn {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+
+}
+
+#h4Item {
+  text-align: left;
+}
+
+.emoji-info {
+  padding-left: 25%;
 }
 
 .button, .submit {
