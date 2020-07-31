@@ -68,7 +68,7 @@ footer {
 }
 
 #addNew {
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .blog-section section {
@@ -120,7 +120,7 @@ footer {
   color: brown;
 }
 .post-made button {
-  justify-content: right;
+  /* justify-content: right; */
   margin-bottom: 2%;
 }
 .emoji-but {
@@ -200,11 +200,10 @@ button, .emoji-but {
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto;
-
 }
 
-.tags-commentBtn #tagP {
-  justify-content: right;
+.tags-commentBtn .button {
+  text-align: center;
 }
 
 #h4Item {
