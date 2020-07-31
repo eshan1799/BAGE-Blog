@@ -211,7 +211,7 @@ function drawBlogs(array) {
     </div>
     </div>
     <div class= "tags-commentBtn">
-    <p>#${newData[i].tags}</p>
+    <p id="tagP">#${newData[i].tags}</p>
     <button type="submit" class="button" id="${i}">View Comments</button>
     </div>
     </section>`)
