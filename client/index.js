@@ -187,11 +187,11 @@ function drawBlogs(array) {
   for (i = 0; i < newData.length; i++){
     newPost.insertAdjacentHTML("afterbegin", `<section class="post-made">
     <h1>${newData[i].title}</h1>
-    <h4 id="h4Item">${newData[i].text}<h4>
-    <p>#${newData[i].tags}</p>
-    <img src="${newData[i].gif}" id="img${i}" />
-    <div>
-    <button type="submit" class="button" id="button${i}">View Comments</button>
+
+
+    <div class = "all-container">
+    <div class="grid-container"> 
+
     <label class="emoji-but">
         <span id="${i}" class="emoji-info">&#128515;</span>
         <p class="emoji-counter" id="react1-${i}">${newData[i].emojis.smiley}</p>
@@ -204,6 +204,15 @@ function drawBlogs(array) {
           <span id="${i}" class="emoji-info">&#128546;</span>
           <p class="emoji-counter" id="react3-${i}">${newData[i].emojis.sad}</p>
     </label>
+    </div>
+    <div class = "text-container">
+    <h4 id="h4Item">${newData[i].text}<h4>
+    <img src="${newData[i].gif}" id="img${i}" />
+    </div>
+    </div>
+    <div class= "tags-commentBtn">
+    <p>#${newData[i].tags}</p>
+    <button type="submit" class="button" id="${i}">View Comments</button>
     </div>
     </section>`)
 
@@ -240,11 +249,11 @@ if(commentBtn != null) {
 function loadComments (e) {
   let postMade = document.querySelectorAll('.post-made')
   for (i=0; i < postMade.length; i++ ) {
-  postMade[i].style.borderColor = "black";
+  postMade[i].style.borderColor = "grey";
   }
   uniqueBtn = (postMade.length - e.target.id) - 1
   console.log(postMade[uniqueBtn].style.borderColor)
-  postMade[uniqueBtn].style.borderColor = "blue" ;
+  postMade[uniqueBtn].style.borderWidth = "thick" ;
   fetch("https://vast-gorge-12456.herokuapp.com/blogs")
   .then(r => r.json())
   .then(drawComments(uniqueBtn))
