@@ -4,20 +4,22 @@ Bhuma, Albie, Geroge and Eshan's simple blog
 
 ***
 
-### Usage Instructions
+## Usage Instructions
 
-#### Heroku
+### Heroku
 1. Visit https://vast-gorge-12456.herokuapp.com/
 
-#### Local Installation
+### Local Installation
 
 1. Clone this repository with `git clone https://github.com/albieduffy/BAGE-Blog.git`
 2. Navigate to the folder and run `npm install`
 3. Run `npm start` and visit http://localhost:3000
 
-### Stand Ups
+***
 
-#### Monday
+## Stand Ups
+
+### Monday
 
 **Aims**
 - Get started with the project:
