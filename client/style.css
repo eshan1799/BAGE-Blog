@@ -49,10 +49,24 @@ footer {
 .sticky-section, .tag-section {
   background-color: #ffbdc7;
 }
-.sticky-section img, .sticky-section .search {
+.sticky-section img {
   margin-top: 5px;
 }
 
+.sticky-section #searchBarText {
+  margin-top: 12px;
+  padding: 10px 10px;
+  border-radius: 60px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #dfe1e5;
+  width: 300px;
+  height: 25px;
+  font-size: 16px;
+  color: #212121;
+}
+
+.sticky-section #searchBarText:focus {outline: none; }
 
 .blog-section section {
   display: flex;
@@ -144,4 +158,8 @@ button, .emoji-but {
 }
 #make-post {
   color: black;
+}
+
+.img-hover:hover, button, .submit {
+  cursor: pointer;
 }

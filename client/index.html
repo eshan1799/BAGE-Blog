@@ -9,7 +9,7 @@
     <body>
       <header>
         <section class="sticky-section">
-          <img onclick="sendToTop()" src="home_images/home.png" alt="home button"/>
+          <img class="img-hover" onclick="sendToTop()" src="home_images/home.png" alt="home button"/>
         </section>
         <section class="sticky-section">
           <form id="searchForm" method="post">
@@ -17,7 +17,7 @@
           </form>
         </section>
         <section class="sticky-section">
-          <img id="addNew" src="home_images/add.png" alt="Add New Post"/>
+          <img id="addNew" class="img-hover" src="home_images/add.png" alt="Add New Post"/>
         </section>
       </header>
       <main>
@@ -37,9 +37,9 @@
               </form>
             </div>
             <div class="returnedGif">
-              <img src="" id="gifImg1">
-              <img src="" id="gifImg2">
-              <img src="" id="gifImg3">
+              <img src="" id="gifImg1" class="img-hover">
+              <img src="" id="gifImg2" class="img-hover">
+              <img src="" id="gifImg3" class="img-hover">
             </div>
             <div class="tag-and-submit">
               <label for="category">Choose a Tag:</label>
@@ -52,7 +52,7 @@
                 <option value="sport">Sport</option>
                 <option value="other">Other</option>
               </select>
-              <input type="submit" id="submit" value="Post">
+              <input type="submit" id="submit" class="submit" value="Post">
             </div>
             </form>
           </section>
@@ -63,7 +63,7 @@
           <section class="comment-area">
             <div class="add-comment">
               <textarea id = "commentTextbox" name="add-comment-box" rows="5" cols="20"></textarea>
-              <input type="submit" id = "addCommentButton" name="" value="Add Comment">
+              <input type="submit" id ="addCommentButton" class="submit" name="" value="Add Comment">
 
             </div>
             <form id="comment">
