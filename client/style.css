@@ -155,8 +155,8 @@ button, .emoji-but {
   font-size: 24px;
 }
 .emoji-counter {
-  font-size: 24px;
-  color: blue !important;
+  font-size: 15px;
+  color: #5f5f61 !important;
 }
 #make-post {
   color: black;
@@ -174,13 +174,13 @@ button, .emoji-but {
   border-color: #f4f4f400;
   border-radius: 5px;
   color: black;
-  margin: 0px 4px;
+  margin: 5px 4px;
   font-size: 14px;
 }
 
 .button {padding: 9px 16px;}
 
-.submit {  padding: 5px 9px;}
+.submit {padding: 5px 9px;}
 
 .button:hover, .submit:hover {
   color: #27292be5;
