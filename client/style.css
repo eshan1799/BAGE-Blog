@@ -67,8 +67,6 @@ footer {
   color: #212121;
 }
 
-.sticky-section #searchBarText:focus {outline: none; }
-
 #addNew {
   font-size: 40px;
 }
@@ -178,6 +176,7 @@ button, .emoji-but {
   opacity: 0.6;
 }
 
+
 .grid-container {
   display: grid;
   grid-template-columns: 50px;
@@ -211,3 +210,29 @@ button, .emoji-but {
 .emoji-info {
   padding-left: 25%;
 }
+
+.button, .submit {
+  background-color: #f4f4f4;
+  border: solid;
+  border-width: 1px;
+  border-color: #f4f4f400;
+  border-radius: 5px;
+  color: black;
+  margin: 0px 4px;
+  font-size: 14px;
+}
+
+.button {padding: 9px 16px;}
+
+.submit {  padding: 5px 9px;}
+
+.button:hover, .submit:hover {
+  color: #27292be5;
+  border-color: #dfe1e5;
+  cursor: pointer;
+  border-width: 1px;
+}
+
+.button:active, .submit:active { border-color: #ffbdc7; }
+
+.sticky-section #searchBarText, button, .submit:focus {outline: none; }

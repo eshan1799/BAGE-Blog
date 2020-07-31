@@ -92,8 +92,8 @@ function drawSearchBlogs(e) {
     <h4 id="h4Item">${e[i].text}<h4>
     <p>#${e[i].tags}</p>
     <img src="${e[i].gif}" id="img${i}" />
-    <div>
-    <button type="submit" class="button" id="${i}">View Comments</button>
+    <div class="divButtons">
+    <button type="submit" class="button" id="button${i}">View Comments</button>
     <label class="emoji-but">
         <span id="${i}" class="emoji-info">&#128515;</span>
         <p class="emoji-counter" id="react1-${i}">${e[i].emojis.smiley}</p>
@@ -148,7 +148,7 @@ function gifySearch(e) {
   const gifyAPIKey = 'qpx6gNTGPO74C8mY6JCzKpMTCiGKxkjC'
   const userGifSearch = gifSearchText.value;
 
-  fetch(`http://api.giphy.com/v1/gifs/search?q=${userGifSearch}&api_key=${gifyAPIKey}&limit=3`)
+  fetch(`https://api.giphy.com/v1/gifs/search?q=${userGifSearch}&api_key=${gifyAPIKey}&limit=3`)
     .then(r => r.json())
     .then(displayGify)
     .catch(console.warn);
@@ -188,8 +188,10 @@ function drawBlogs(array) {
     newPost.insertAdjacentHTML("afterbegin", `<section class="post-made">
     <h1>${newData[i].title}</h1>
 
+
     <div class = "all-container">
     <div class="grid-container"> 
+
     <label class="emoji-but">
         <span id="${i}" class="emoji-info">&#128515;</span>
         <p class="emoji-counter" id="react1-${i}">${newData[i].emojis.smiley}</p>
@@ -259,18 +261,21 @@ function loadComments (e) {
 
 }
 
-function drawComments(Btn){
+function deleteComments() {
   let commentArray = document.querySelectorAll('.comment-added')
-  console.log(Btn)
-  for (i=0; i < commentArray.length; i++) {
+  for (i=1; i < commentArray.length + 1; i++) {
     newComment.removeChild(newComment.lastChild)
   }
-
+}
+function drawComments(Btn){
+  deleteComments()
+  deleteComments()
+  let postMade = document.querySelectorAll('.post-made')
+    uniqueBtn = (postMade.length - Btn) - 1
   showNewComments()
-
-  for (i = 0; i < newData[Btn].comments.length; i++){
+  for (i = 0; i < newData[uniqueBtn].comments.length; i++){
           newComment.insertAdjacentHTML("afterbegin", `<section class="comment-added">
-                                             <h1>${newData[Btn].comments[i]}</h1>
+                                             <h1>${newData[uniqueBtn].comments[i]}</h1>
                                              </section>` )
   }
 }
@@ -372,6 +377,7 @@ function savePost(e){
       newPostSection.setAttribute('style', 'visibility: hidden;');
     }
 
+    gifyURL != undefined ? gifyURL = gifyURL : gifyURL = "";
 
     const data = {title : `${title}`, text : `${text}`, tags : `${dropdown}`, comments : [ ] ,  emojis : {smiley: 0, laugh: 0, sad: 0 }, gif: `${gifyURL}`, key : "" }
 
