@@ -37,36 +37,46 @@ Bhuma, Albie, Geroge and Eshan's simple blog
 **Aims**
 - Connect HTML, CSS and JS to make sure layout is matches wireframe.
 - Finish server routes
-- Store data in external json file
+- Link server to blog posts stored in external json file
+
 **Blockers**
-- Albie:
-- Bhuma:
-- Eshan:
-- George:
+- Albie: None
+- Bhuma: Posting positioning
+- Eshan: None
+- George: None
 #### Wednesday
 
 **Aims**
+- Implement Giphy search feature
+- Add comment section to each blog posts
+- Get started with testing for server side
 
 **Blockers**
-- Albie:
-- Bhuma:
-- Eshan:
-- George:
+- Albie: Tired
+- Bhuma: None
+- Eshan: None
+- George: None
 #### Thursday
 
 **Aims**
+- Deploy to Heroku
+- Finish all testing
+- Finish styling
 
 **Blockers**
-- Albie:
-- Bhuma:
-- Eshan:
-- George:
+- Albie: Knackered from a big swim
+- Bhuma: None
+- Eshan: None
+- George: Hayfever flaring up
 ###Friday
 
 **Aims**
+- Finish last styling points
+- Fix Giphy bugs
+- Prepare for the presentation
 
 **Blockers**
-- Albie:
-- Bhuma:
-- Eshan:
-- George:
+- Albie: At girlfriend's house
+- Bhuma: None
+- Eshan: None
+- George: The Mediterranean heat

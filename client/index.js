@@ -252,21 +252,18 @@ function loadComments (e) {
 
 }
 
-function deleteComments() {
+function drawComments(Btn){
   let commentArray = document.querySelectorAll('.comment-added')
-  for (i=1; i < commentArray.length + 1; i++) {
+  console.log(Btn)
+  for (i=0; i < commentArray.length; i++) {
     newComment.removeChild(newComment.lastChild)
   }
-}
-function drawComments(Btn){
-  deleteComments()
-  deleteComments()
-  let postMade = document.querySelectorAll('.post-made')
-    uniqueBtn = (postMade.length - Btn) - 1
+
   showNewComments()
-  for (i = 0; i < newData[uniqueBtn].comments.length; i++){
+
+  for (i = 0; i < newData[Btn].comments.length; i++){
           newComment.insertAdjacentHTML("afterbegin", `<section class="comment-added">
-                                             <h1>${newData[uniqueBtn].comments[i]}</h1>
+                                             <h1>${newData[Btn].comments[i]}</h1>
                                              </section>` )
   }
 }
