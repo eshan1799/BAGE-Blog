@@ -190,7 +190,7 @@ function drawBlogs(array) {
 
 
     <div class = "all-container">
-    <div class="grid-container"> 
+    <div class="grid-container">
 
     <label class="emoji-but">
         <span id="${i}" class="emoji-info">&#128515;</span>
@@ -250,6 +250,7 @@ function loadComments (e) {
   let postMade = document.querySelectorAll('.post-made')
   for (i=0; i < postMade.length; i++ ) {
   postMade[i].style.borderColor = "grey";
+  postMade[i].style.borderWidth = "thin";
   }
   uniqueBtn = (postMade.length - e.target.id) - 1
   console.log(postMade[uniqueBtn].style.borderColor)
