@@ -130,6 +130,9 @@ footer {
   height: 60px;
   font-size: 200%;
 }
+
+.emoji-but:hover { cursor: pointer; }
+
 /* hides the HTML checkbox */
 .emoji-but input {
   position: absolute;
@@ -175,7 +178,6 @@ button, .emoji-but {
   cursor: pointer;
   opacity: 0.6;
 }
-
 
 .grid-container {
   display: grid;
