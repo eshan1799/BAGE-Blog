@@ -148,7 +148,7 @@ function gifySearch(e) {
   const gifyAPIKey = 'qpx6gNTGPO74C8mY6JCzKpMTCiGKxkjC'
   const userGifSearch = gifSearchText.value;
 
-  fetch(`http://api.giphy.com/v1/gifs/search?q=${userGifSearch}&api_key=${gifyAPIKey}&limit=3`)
+  fetch(`https://api.giphy.com/v1/gifs/search?q=${userGifSearch}&api_key=${gifyAPIKey}&limit=3`)
     .then(r => r.json())
     .then(displayGify)
     .catch(console.warn);
@@ -365,6 +365,7 @@ function savePost(e){
       newPostSection.setAttribute('style', 'visibility: hidden;');
     }
 
+    gifyURL != undefined ? gifyURL = gifyURL : gifyURL = "";
 
     const data = {title : `${title}`, text : `${text}`, tags : `${dropdown}`, comments : [ ] ,  emojis : {smiley: 0, laugh: 0, sad: 0 }, gif: `${gifyURL}`, key : "" }
 
