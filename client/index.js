@@ -92,8 +92,8 @@ function drawSearchBlogs(e) {
     <h4 id="h4Item">${e[i].text}<h4>
     <p>#${e[i].tags}</p>
     <img src="${e[i].gif}" id="img${i}" />
-    <div>
-    <button type="submit" class="button" id="${i}">View Comments</button>
+    <div class="divButtons">
+    <button type="submit" class="button" id="button${i}">View Comments</button>
     <label class="emoji-but">
         <span id="${i}" class="emoji-info">&#128515;</span>
         <p class="emoji-counter" id="react1-${i}">${e[i].emojis.smiley}</p>
@@ -191,7 +191,7 @@ function drawBlogs(array) {
     <p>#${newData[i].tags}</p>
     <img src="${newData[i].gif}" id="img${i}" />
     <div>
-    <button type="submit" class="button" id="${i}">View Comments</button>
+    <button type="submit" class="button" id="button${i}">View Comments</button>
     <label class="emoji-but">
         <span id="${i}" class="emoji-info">&#128515;</span>
         <p class="emoji-counter" id="react1-${i}">${newData[i].emojis.smiley}</p>
