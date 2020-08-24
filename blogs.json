@@ -1,5 +1,12 @@
-{
-  "blogs": [
-    
-  ]
-}
+[
+  {
+    "year" : 2013,
+    "title" : "Turn It Down, Or Else!",
+    "info" : {
+      "directors" : ["Alice Smith", "Bob Jones"],
+      "release-date" : "2013-01-18T00:00:00Z",
+      "rating" : 6.2,
+      "genres" : ["Comedy", "Drama"],
+      "actors" : ["David Matthewman", "Johnathan G. Neff"]
+   }
+]
